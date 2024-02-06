@@ -18,13 +18,16 @@ const Wrapper = styled("div")({
 
 const Dashboard = ({ setUserDetails, isUserInRoom }) => {
   useEffect(() => {
+    // document.title = "Dashboard";
     const userDetails = localStorage.getItem("user");
 
     if (!userDetails) {
       logout();
     } else {
-      setUserDetails(JSON.parse(userDetails));
-      connectWithSocketServer(JSON.parse(userDetails));
+      const parsedUserDetails = JSON.parse(userDetails);
+      setUserDetails(parsedUserDetails);
+      connectWithSocketServer(parsedUserDetails);
+      document.title = `Real Time Lecturing Dashboard \n ${parsedUserDetails.username}`;
     }
   }, [setUserDetails]);
 

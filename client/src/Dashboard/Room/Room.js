@@ -27,7 +27,7 @@ const minimizedRoomStyle = {
 };
 
 const Room = () => {
-  const [isRoomMinimized, setIsRoomMinimized] = useState(true);
+  const [isRoomMinimized, setIsRoomMinimized] = useState(false);
 
   const roomResizeHandler = () => {
     setIsRoomMinimized(!isRoomMinimized);

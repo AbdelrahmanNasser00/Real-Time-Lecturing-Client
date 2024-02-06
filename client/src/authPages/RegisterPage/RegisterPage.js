@@ -35,6 +35,7 @@ const RegisterPage = ({ register }) => {
         password,
       })
     );
+    document.title = `Real Time Lecutring - log in`;
   }, [mail, username, password, setIsFormValid]);
 
   return (
