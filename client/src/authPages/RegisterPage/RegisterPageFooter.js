@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import InputWithLabel from "../../shared/components/InputWithLabel";
 import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
 import RedirectInfo from "../../shared/components/RedirectInfo";
 import { useHistory } from "react-router-dom";
@@ -12,33 +13,72 @@ const getFormValidMessage = () => {
   return "Press to register!";
 };
 
-const RegisterPageFooter = ({ handleRegister, isFormValid }) => {
+const RegisterPageFooter = ({
+  handleRegister,
+  handleVerify,
+  isFormValid,
+  verificationCode,
+  setVerificationCode,
+}) => {
   const history = useHistory();
+  const [showValidationCode, setShowValidationCode] = useState(false);
 
+  const handleClickRigisterButton = () => {
+    setShowValidationCode(!showValidationCode);
+    handleRegister();
+  };
+  const handleClickVerificationButton = () => {
+    setShowValidationCode(!showValidationCode);
+    handleVerify();
+  };
   const handlePushToLoginPage = () => {
     history.push("/login");
   };
 
   return (
     <>
-      <Tooltip
-        title={!isFormValid ? getFormNotValidMessage() : getFormValidMessage()}
-      >
+      {!showValidationCode && (
         <div>
-          <CustomPrimaryButton
-            label="Register"
-            additionalStyles={{ marginTop: "30px" }}
-            disabled={!isFormValid}
-            onClick={handleRegister}
+          {" "}
+          <Tooltip
+            title={
+              !isFormValid ? getFormNotValidMessage() : getFormValidMessage()
+            }
+          >
+            <div>
+              <CustomPrimaryButton
+                label="Register"
+                additionalStyles={{ marginTop: "30px" }}
+                disabled={!isFormValid}
+                onClick={handleClickRigisterButton}
+              />
+            </div>
+          </Tooltip>
+          <RedirectInfo
+            text=""
+            redirectText="Already have an account ?"
+            additionalStyles={{ marginTop: "5px" }}
+            redirectHandler={handlePushToLoginPage}
           />
         </div>
-      </Tooltip>
-      <RedirectInfo
-        text=""
-        redirectText="Already have an account ?"
-        additionalStyles={{ marginTop: "5px" }}
-        redirectHandler={handlePushToLoginPage}
-      />
+      )}
+      {showValidationCode && (
+        <div>
+          <InputWithLabel
+            value={verificationCode}
+            setValue={setVerificationCode}
+            label=""
+            type="text"
+            placeholder="Enter Your Verification Code"
+          />
+          <CustomPrimaryButton
+            label="submit"
+            additionalStyles={{ marginTop: "30px" }}
+            disabled={false}
+            onClick={handleClickVerificationButton}
+          />
+        </div>
+      )}
     </>
   );
 };

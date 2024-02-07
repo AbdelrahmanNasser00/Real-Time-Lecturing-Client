@@ -11,6 +11,11 @@ const reducer = (state = initState, action) => {
         ...state,
         userDetails: action.userDetails,
       };
+    case authActions.SET_UNVERIFIED_USER_DETAILS:
+      return {
+        ...state,
+        userDetails: action.userDetails,
+      };
     default:
       return state;
   }

@@ -10,7 +10,6 @@ import { useHistory } from "react-router-dom";
 
 const LoginPage = ({ login }) => {
   const history = useHistory();
-
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -18,7 +17,7 @@ const LoginPage = ({ login }) => {
   useEffect(() => {
     setIsFormValid(validateLoginForm({ mail, password }));
     document.title = `Real Time Lecutring - log in`;
-  }, [mail, password, setIsFormValid]);
+  }, [mail, password]);
 
   const handleLogin = () => {
     const userDetails = {

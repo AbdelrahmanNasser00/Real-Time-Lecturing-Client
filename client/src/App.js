@@ -9,7 +9,7 @@ import LoginPage from "./authPages/LoginPage/LoginPage";
 import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import Dashboard from "./Dashboard/Dashboard";
 import AlertNotification from "./shared/components/AlertNotification";
-
+import Subject from "./Dashboard/Subject";
 import "./App.css";
 
 function App() {
@@ -25,6 +25,9 @@ function App() {
           </Route>
           <Route exact path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route exact path="/subject">
+            <Subject />
           </Route>
           <Route path="/">
             <Redirect to="/dashboard" />

@@ -3,7 +3,7 @@ import { logout } from "./shared/utils/auth";
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8080/api",
-  timeout: 1000,
+  timeout: 5000,
 });
 
 apiClient.interceptors.request.use(
@@ -38,6 +38,17 @@ export const login = async (data) => {
 export const register = async (data) => {
   try {
     return await apiClient.post("/auth/register", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const verify = async (data) => {
+  try {
+    return await apiClient.post("/auth/verify", data);
   } catch (exception) {
     return {
       error: true,

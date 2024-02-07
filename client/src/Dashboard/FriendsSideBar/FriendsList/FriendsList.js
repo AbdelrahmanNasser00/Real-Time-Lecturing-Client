@@ -17,16 +17,12 @@ const checkOnlineUsers = (friends = [], onlineUsers = []) => {
   return friends;
 };
 
-const FriendsList = ({ friends, onlineUsers }) => {
+const FriendsList = ({ friends }) => {
+  console.log(friends);
   return (
     <MainContainer>
-      {checkOnlineUsers(friends, onlineUsers).map((f) => (
-        <FriendsListItem
-          username={f.username}
-          id={f.id}
-          key={f.id}
-          isOnline={f.isOnline}
-        />
+      {friends.map((f, index) => (
+        <FriendsListItem key={index} name={f.name} />
       ))}
     </MainContainer>
   );

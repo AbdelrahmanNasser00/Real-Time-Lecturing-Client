@@ -7,7 +7,7 @@ const Title = ({ title }) => {
       sx={{
         textTransform: "uppercase",
         color: "#8e9297",
-        fontSize: "14px",
+        fontSize: "25px",
         marginTop: "10px",
       }}
     >

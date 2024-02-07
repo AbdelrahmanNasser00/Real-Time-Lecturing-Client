@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { styled } from "@mui/system";
 import SideBar from "./SideBar/SideBar";
 import FriendsSideBar from "./FriendsSideBar/FriendsSideBar";
+import SubjectSideBar from "./SubjectsSideBar/SubjectsSideBar";
 import AppBar from "./AppBar/AppBar";
 import { logout } from "../shared/utils/auth";
 import { connect } from "react-redux";
@@ -18,12 +19,11 @@ const Wrapper = styled("div")({
 
 const Dashboard = ({ setUserDetails, isUserInRoom }) => {
   useEffect(() => {
-    // document.title = "Dashboard";
     const userDetails = localStorage.getItem("user");
-
     if (!userDetails) {
       logout();
     } else {
+
       const parsedUserDetails = JSON.parse(userDetails);
       setUserDetails(parsedUserDetails);
       connectWithSocketServer(parsedUserDetails);
@@ -33,8 +33,9 @@ const Dashboard = ({ setUserDetails, isUserInRoom }) => {
 
   return (
     <Wrapper>
-      <SideBar />
-      <FriendsSideBar />
+      {/* <SideBar /> */}
+      {/* <FriendsSideBar /> */}
+      <SubjectSideBar />
       <AppBar />
       {isUserInRoom && <Room />}
     </Wrapper>

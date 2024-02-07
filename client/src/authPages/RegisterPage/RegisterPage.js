@@ -8,25 +8,37 @@ import { connect } from "react-redux";
 import { getActions } from "../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
 
-const RegisterPage = ({ register }) => {
+const RegisterPage = ({ register, verify }) => {
   const history = useHistory();
 
   const [mail, setMail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
 
   const [isFormValid, setIsFormValid] = useState(false);
 
   const handleRegister = () => {
+    console.log("handle register called");
     const userDetails = {
       mail,
       password,
       username,
     };
 
-    register(userDetails, history);
+    register(userDetails);
   };
 
+  const handleVerify = () => {
+    console.log("handle verify called");
+
+    const userDetailsString = localStorage.getItem("unverifiedUser");
+    const userDetails = JSON.parse(userDetailsString);
+    userDetails.verificationCode = verificationCode;
+    localStorage.setItem("unverifiedUser", JSON.stringify(userDetails));
+
+    verify(userDetails, history);
+  };
   useEffect(() => {
     setIsFormValid(
       validateRegisterForm({
@@ -53,6 +65,9 @@ const RegisterPage = ({ register }) => {
       />
       <RegisterPageFooter
         handleRegister={handleRegister}
+        handleVerify={handleVerify}
+        verificationCode={verificationCode}
+        setVerificationCode={setVerificationCode}
         isFormValid={isFormValid}
       />
     </AuthBox>

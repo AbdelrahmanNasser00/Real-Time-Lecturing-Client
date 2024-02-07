@@ -4,10 +4,10 @@ import Avatar from "../../../shared/components/Avatar";
 import Typography from "@mui/material/Typography";
 import OnlineIndicator from "./OnlineIndicator";
 
-const FriendsListItem = ({ id, username, isOnline }) => {
+const FriendsListItem = ({ name }) => {
   return (
     <Button
-      disabled={true}
+      disabled={false}
       style={{
         width: "100%",
         height: "42px",
@@ -20,19 +20,19 @@ const FriendsListItem = ({ id, username, isOnline }) => {
         position: "relative",
       }}
     >
-      <Avatar username={username} />
+      {/* <Avatar username={username} /> */}
       <Typography
         style={{
           marginLeft: "7px",
           fontWeight: 700,
-          color: "#8e9297",
+          color: "white",
         }}
         variant="subtitle1"
         align="left"
       >
-        {username}
+        {name}
       </Typography>
-      {isOnline && <OnlineIndicator />}
+      {/* {isOnline && <OnlineIndicator />} */}
     </Button>
   );
 };
