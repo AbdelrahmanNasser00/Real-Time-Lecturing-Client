@@ -7,6 +7,7 @@ import Room from "./Room/Room";
 import useUserDetails from "../shared/utils/useUserDetails";
 import Wrapper from "../shared/components/Wrapper";
 import Spinner from "../shared/components/Spinner";
+import Files from "./SubjectBar/Files";
 
 const Subject = ({ setUserDetails, isUserInRoom }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +20,7 @@ const Subject = ({ setUserDetails, isUserInRoom }) => {
   return (
     <Wrapper>
       <SideBar />
+      <Files />
       <AppBar />
       {isUserInRoom && <Room />}
     </Wrapper>
