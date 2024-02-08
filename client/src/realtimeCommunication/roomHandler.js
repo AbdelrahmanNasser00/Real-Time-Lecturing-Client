@@ -26,23 +26,25 @@ export const newRoomCreated = (data) => {
 export const updateActiveRooms = (data) => {
   const { activeRooms } = data;
 
-  const friends = store.getState().friends.friends;
+  // const friends = store.getState().friends.friends;
   const rooms = [];
 
-  const userId = store.getState().auth.userDetails?._id;
+  // const userId = store.getState().auth.userDetails?._id;
 
   activeRooms.forEach((room) => {
-    const isRoomCreatedByMe = room.roomCreator.userId === userId;
+    rooms.push({ ...room, creatorUsername: ".." });
 
-    if (isRoomCreatedByMe) {
-      rooms.push({ ...room, creatorUsername: "Me" });
-    } else {
-      friends.forEach((f) => {
-        if (f.id === room.roomCreator.userId) {
-          rooms.push({ ...room, creatorUsername: f.username });
-        }
-      });
-    }
+    // const isRoomCreatedByMe = room.roomCreator.userId === userId;
+
+    // if (isRoomCreatedByMe) {
+    //   rooms.push({ ...room, creatorUsername: ".." });
+    // } else {
+    //   friends.forEach((f) => {
+    //     if (f.id === room.roomCreator.userId) {
+    //       rooms.push({ ...room, creatorUsername: f.username });
+    //     }
+    //   });
+    // }
   });
 
   store.dispatch(setActiveRooms(rooms));

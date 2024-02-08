@@ -8,7 +8,7 @@ const SubjectsListItem = ({ name }) => {
 
   const handleSubjectClick = () => {
     console.log("subject clicked");
-    history.push("/subject", { title: name });
+    history.push("/subject");
   };
   return (
     <Button

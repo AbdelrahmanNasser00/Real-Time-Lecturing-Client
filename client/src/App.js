@@ -26,6 +26,7 @@ function App() {
           <Route exact path="/dashboard">
             <Dashboard />
           </Route>
+
           <Route exact path="/subject">
             <Subject />
           </Route>
