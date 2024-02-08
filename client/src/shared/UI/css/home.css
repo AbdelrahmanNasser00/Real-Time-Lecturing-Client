@@ -1,0 +1,114 @@
+/* Start Header */
+header {
+    background-color: transparent;
+    padding: 0px 0px 0px 64px;
+    height: 70px;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header li,
+a,
+button {
+    text-decoration: none;
+    /* color: #9fe7f5; */
+    color: white;
+    font-weight: 800;
+
+}
+
+header .navigation {
+    list-style: none;
+    padding-right: 100px;
+    font-size: 16px;
+}
+
+header .navigation li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+header .navigation li a {
+    transition: all 0.3s ease 0s;
+}
+
+header .navigation li a:hover {
+    color: #429ebd;
+}
+
+header .navigation .contact {
+    border: none;
+    border-radius: 15px;
+    background-color: var(--secondery-color);
+    transition: all 0.3s ease 0s;
+    padding: 9px 25px;
+    cursor: pointer;
+    color: var(--main-color);
+}
+
+header .navigation .contact:hover {
+    background-color: #429ebd;
+}
+
+/* End Header */
+.container {
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.container .text {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 700px;
+}
+
+
+.container .text .welcome {
+    display: flex;
+    flex-direction: row;
+}
+
+.container .text .welcome span {
+    font-size: 70px;
+    font-weight: 900;
+    color: #f7ad19;
+
+}
+
+
+.container h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #f7ad19;
+    font-size: 35px;
+}
+
+.container .wel {
+    font-size: 80px;
+    /* color: #f7ad19; */
+    color: #f27f0c;
+}
+
+.container .text p {
+    line-height: 1.8;
+    color: white;
+    font-size: 19px;
+}
+
+.container .home-img {
+    width: 50%;
+    height: 100%;
+}
+
+/* End main page */
