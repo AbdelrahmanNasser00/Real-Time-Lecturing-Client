@@ -3,7 +3,6 @@ export const subjectsActions = {
 };
 
 export const setSubjects = (subjects) => {
-//   console.log("setSubjec", subjects);
   return {
     type: subjectsActions.SET_SUBJECTS,
     subjects,

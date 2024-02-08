@@ -15,7 +15,7 @@ const Wrapper = styled("div")({
   backgroundColor: "#36393f",
 });
 
-const Dashboard = ({ setUserDetails, isUserInRoom }) => {
+const Subject = ({ setUserDetails, isUserInRoom }) => {
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
 
@@ -50,4 +50,4 @@ const mapActionsToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStoreStateToProps, mapActionsToProps)(Dashboard);
+export default connect(mapStoreStateToProps, mapActionsToProps)(Subject);
