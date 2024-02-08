@@ -1,37 +1,24 @@
-import React, { useEffect } from "react";
-import { styled } from "@mui/system";
+import React, { useState } from "react";
 import SideBar from "./SideBar/SideBar";
 import AppBar from "./AppBar/AppBar";
-import { logout } from "../shared/utils/auth";
 import { connect } from "react-redux";
 import { getActions } from "../store/actions/authActions";
-import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import Room from "./Room/Room";
-
-const Wrapper = styled("div")({
-  width: "100%",
-  height: "100vh",
-  display: "flex",
-  backgroundColor: "#36393f",
-});
+import useUserDetails from "../shared/utils/useUserDetails";
+import Wrapper from "../shared/components/Wrapper";
+import Spinner from "../shared/components/Spinner";
 
 const Subject = ({ setUserDetails, isUserInRoom }) => {
-  useEffect(() => {
-    const userDetails = localStorage.getItem("user");
+  const [isLoading, setIsLoading] = useState(true);
 
-    if (!userDetails) {
-      logout();
-    } else {
-      setUserDetails(JSON.parse(userDetails));
-      connectWithSocketServer(JSON.parse(userDetails));
-    }
-  }, []);
+  useUserDetails(setUserDetails, setIsLoading);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Wrapper>
       <SideBar />
-      {/* <FriendsSideBar /> */}
-      {/* <Messenger /> */}
       <AppBar />
       {isUserInRoom && <Room />}
     </Wrapper>
