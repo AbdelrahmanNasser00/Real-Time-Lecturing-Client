@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "@mui/system";
 
-// Styled components for spinner
 const SpinnerWrapper = styled("div")({
   display: "flex",
   justifyContent: "center",

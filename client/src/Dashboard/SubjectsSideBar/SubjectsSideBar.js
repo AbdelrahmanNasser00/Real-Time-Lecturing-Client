@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import SubjectsList from "./subjectsList/SubjectsList";
-import Title from "../FriendsSideBar/Title";
+import Title from "../../shared/components/Title";
 const MainContainer = styled("div")({
   width: "224px",
   height: "100%",
@@ -15,7 +15,6 @@ const SubjectsSideBar = () => {
   return (
     <MainContainer>
       <Title title="Your Subjects" />
-
       <SubjectsList />
     </MainContainer>
   );

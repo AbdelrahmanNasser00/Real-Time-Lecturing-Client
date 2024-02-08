@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import InputWithLabel from "../../shared/components/InputWithLabel";
 import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
 import RedirectInfo from "../../shared/components/RedirectInfo";
 import { useHistory } from "react-router-dom";
@@ -38,7 +36,8 @@ const RegisterPageFooter = ({
         <Tooltip
           title={
             !isFormValid ? getFormNotValidMessage() : getFormValidMessage()
-          }>
+          }
+        >
           <div>
             <CustomPrimaryButton
               label="Register"

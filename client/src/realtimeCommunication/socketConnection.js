@@ -1,10 +1,5 @@
 import io from "socket.io-client";
 import { setSubjects } from "../store/actions/subjectsActions";
-// import {
-//   setPendingFriendsInvitations,
-//   setFriends,
-//   setOnlineUsers,
-// } from "../store/actions/friendsActions";
 import store from "../store/store";
 import * as roomHandler from "./roomHandler";
 import * as webRTCHandler from "./webRTCHandler";
@@ -24,26 +19,10 @@ export const connectWithSocketServer = (userDetails) => {
     console.log(socket.id);
   });
 
-  // socket.on("friends-invitations", (data) => {
-  //   const { pendingInvitations } = data;
-  //   store.dispatch(setPendingFriendsInvitations(pendingInvitations));
-  // });
-
-  // socket.on("friends-list", (data) => {
-  //   console.log("subjects came");
-  //   store.dispatch(setSubjects(data));
-  //   // store.dispatch(setFriends(data));
-  // });
-
   socket.on("subjects-list", (data) => {
     console.log("subjects came");
     store.dispatch(setSubjects(data));
   });
-
-  // socket.on("online-users", (data) => {
-  //   const { onlineUsers } = data;
-  //   // store.dispatch(setOnlineUsers(onlineUsers));
-  // });
 
   socket.on("create-room", (data) => {
     roomHandler.newRoomCreated(data);
