@@ -8,6 +8,7 @@ import useUserDetails from "../shared/utils/useUserDetails";
 import Wrapper from "../shared/components/Wrapper";
 import Spinner from "../shared/components/Spinner";
 import { useParams } from "react-router-dom";
+import Files from "./SubjectBar/Files";
 
 const Subject = ({ setUserDetails, isUserInRoom, subjects }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +26,7 @@ const Subject = ({ setUserDetails, isUserInRoom, subjects }) => {
   return (
     <Wrapper>
       <SideBar />
+      <Files />
       <AppBar />
       <h1>{subject.code}</h1>
       {isUserInRoom && <Room />}

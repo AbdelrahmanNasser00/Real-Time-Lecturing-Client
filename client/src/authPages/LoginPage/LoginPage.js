@@ -16,7 +16,6 @@ const LoginPage = ({ login }) => {
 
   useEffect(() => {
     setIsFormValid(validateLoginForm({ mail, password }));
-    document.title = `Real Time Lecutring - log in`;
   }, [mail, password]);
 
   const handleLogin = () => {

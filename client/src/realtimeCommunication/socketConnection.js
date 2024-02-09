@@ -8,7 +8,7 @@ let socket = null;
 
 export const connectWithSocketServer = (userDetails) => {
   const jwtToken = userDetails.token;
-  socket = io("http://localhost:8080", {
+  socket = io("https://realtime-lecturing-api.onrender.com", {
     auth: {
       token: jwtToken,
     },

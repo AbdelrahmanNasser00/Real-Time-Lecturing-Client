@@ -11,7 +11,6 @@ const useUserDetails = (setUserDetails, setIsLoading) => {
       const parsedUserDetails = JSON.parse(userDetails);
       setUserDetails(parsedUserDetails);
       connectWithSocketServer(parsedUserDetails);
-      document.title = `Real Time Lecturing Dashboard \n ${parsedUserDetails.username}`;
       setIsLoading(false);
     }
   }, [setUserDetails, setIsLoading]);
