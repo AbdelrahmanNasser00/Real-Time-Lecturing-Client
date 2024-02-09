@@ -1,0 +1,21 @@
+/* .container {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 89vh;
+} */
+
+.svg-image-container {
+    max-width: 41%;
+    max-height: 89vh;
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    right: 50px;
+}
+
+.svg-image-container img {
+    width: 100%;
+    height: auto;
+}

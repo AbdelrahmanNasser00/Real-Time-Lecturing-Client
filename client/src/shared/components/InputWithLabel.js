@@ -3,28 +3,34 @@ import { styled } from "@mui/system";
 
 const Wrapper = styled("div")({
   display: "flex",
-  justifyContent: "center",
   flexDirection: "column",
   width: "100%",
+  marginBottom: "10px",
 });
 
 const Label = styled("p")({
-  color: "#b9bbbe",
-  textTransform: "uppercase",
+  color: "#555",
   fontWeight: "600",
-  fontSize: "16px",
+  fontSize: "14px",
+  marginBottom: "8px",
+  textAlign: "left",
 });
 
 const Input = styled("input")({
-  flexGrow: 1,
   height: "40px",
-  border: "1px solid black",
+  border: "1px solid #ddd",
   borderRadius: "5px",
-  color: "#dcddde",
-  background: "#35393f",
+  color: "#555",
+  background: "#f8f8f8",
   margin: 0,
   fontSize: "16px",
-  padding: "0 5px",
+  padding: "0 12px",
+  transition: "border-color 0.3s ease",
+
+  "&:focus": {
+    outline: "none",
+    borderColor: "#2196f3",
+  },
 });
 
 const InputWithLabel = (props) => {

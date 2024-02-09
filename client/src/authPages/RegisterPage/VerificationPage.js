@@ -1,20 +1,24 @@
 import React from "react";
 import OtpInput from "react-otp-input";
 import "../../shared/UI/css/style.css";
+import AuthBox from "../../shared/components/AuthBox";
+import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
+import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
+
 const VerificationPage = ({
   handleVerify,
   verificationCode,
   setVerificationCode,
 }) => {
   const otpInputStyle = {
-    width: "40px",
-    height: "40px",
+    width: "25px",
+    height: "32px",
     fontSize: "20px",
     margin: "5px",
-    border: "2px solid",
-    borderRadius: "10px",
+    border: "1px solid",
+    borderRadius: "7px",
     textAlign: "center",
-    fontWeight: "800",
+    fontWeight: "500",
   };
   const handleClickVerificationButton = (e) => {
     e.preventDefault();
@@ -22,34 +26,32 @@ const VerificationPage = ({
   };
 
   return (
-    <div className="card">
-      <form className="form">
-        <div className="Enter-ver-text">
-          <p>Enter verification code</p>
-        </div>
-        <div className="otp-field">
-          <OtpInput
-            value={verificationCode}
-            onChange={setVerificationCode}
-            numInputs={6}
-            renderSeparator={<span>-</span>}
-            renderInput={(props, index) => (
-              <input {...props} style={otpInputStyle} />
-            )}
-          />
-        </div>
-        <button className="submitBtn" onClick={handleClickVerificationButton}>
-          Submit
-          <svg
-            fill="white"
-            viewBox="0 0 448 512"
-            height="1em"
-            className="arrow">
-            <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-          </svg>
-        </button>
-      </form>
-    </div>
+    <>
+      <div className="svg-image-container">
+        <img src={BackGroundImage} />
+      </div>
+      <AuthBox>
+        <h2 className="verf-h2">Verify your email</h2>
+        <p>
+          We've sent a verification code to your email address. Please check
+          your inbox and enter the code to continue.
+        </p>
+        <OtpInput
+          value={verificationCode}
+          onChange={setVerificationCode}
+          numInputs={6}
+          renderSeparator={<span>-</span>}
+          renderInput={(props, index) => (
+            <input {...props} style={otpInputStyle} />
+          )}
+        />
+        <CustomPrimaryButton
+          label="Continue"
+          additionalStyles={{ marginTop: "30px" }}
+          onClick={handleClickVerificationButton}
+        />
+      </AuthBox>
+    </>
   );
 };
 

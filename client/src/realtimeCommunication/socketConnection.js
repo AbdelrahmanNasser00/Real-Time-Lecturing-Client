@@ -3,7 +3,7 @@ import { setSubjects } from "../store/actions/subjectsActions";
 import store from "../store/store";
 import * as roomHandler from "./roomHandler";
 import * as webRTCHandler from "./webRTCHandler";
-
+import { socketOpen, socketClose } from "../store/actions/socketActions";
 let socket = null;
 
 export const connectWithSocketServer = (userDetails) => {
@@ -21,11 +21,12 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on("connect", () => {
     console.log("succesfully connected with socket.io server");
     console.log(socket.id);
+    store.dispatch(socketOpen());
   });
 
   socket.on("subjects-list", (data) => {
-    console.log("subjects came");
-    store.dispatch(setSubjects(data));
+    const { subjects } = data;
+    store.dispatch(setSubjects(subjects));
   });
 
   socket.on("create-room", (data) => {
@@ -54,6 +55,11 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on("room-participant-left", (data) => {
     console.log("user left room");
     webRTCHandler.handleParticipantLeftRoom(data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("dsfsafds");
+    socketClose();
   });
 };
 

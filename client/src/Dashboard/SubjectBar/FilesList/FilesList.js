@@ -12,7 +12,7 @@ const FilesList = () => {
     { id: 2, file: "Assignments" },
     { id: 3, file: "Projects" },
   ];
-  console.log(files);
+  // console.log(files);
   return (
     <MainContainer>
       {files.map(({ id, file }) => (

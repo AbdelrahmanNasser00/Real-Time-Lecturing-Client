@@ -7,10 +7,9 @@ const SubjectsListItem = ({ name, code }) => {
   const history = useHistory();
 
   const handleSubjectClick = () => {
-    console.log("subject clicked");
-    console.log("code: ", code);
     history.push(`/subject/${code}`);
   };
+  
   return (
     <Button
       disabled={false}

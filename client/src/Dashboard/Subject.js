@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar/SideBar";
 import AppBar from "./AppBar/AppBar";
 import { connect } from "react-redux";
@@ -9,32 +9,50 @@ import Wrapper from "../shared/components/Wrapper";
 import Spinner from "../shared/components/Spinner";
 import { useParams } from "react-router-dom";
 import Files from "./SubjectBar/Files";
+import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
+import { logout } from "../shared/utils/auth";
 
-const Subject = ({ setUserDetails, isUserInRoom, subjects }) => {
+const Subject = ({ subjects, setUserDetails, isUserInRoom, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const userDetails = localStorage.getItem("user");
+    if (!userDetails) {
+      logout();
+    } else {
+      const parsedUserDetails = JSON.parse(userDetails);
+      setUserDetails(parsedUserDetails);
+      if (!socketOpen) {
+        connectWithSocketServer(parsedUserDetails);
+      }
+      setIsLoading(false);
+    }
+  }, [setUserDetails, socketOpen, subjects.subjects.length]);
+
   const { id } = useParams();
 
-  const subject = subjects.find((subject) => subject.code === id);
-  useUserDetails(setUserDetails, setIsLoading);
-  if (isLoading || !subject) {
+  const subject = subjects.subjects.find((subject) => subject.code === id);
+
+  if (isLoading || !subjects.subjects.length) {
     return <Spinner />;
   }
 
   return (
     <Wrapper>
-      <SideBar />
+      <SideBar subjectId={subject.id} />
       <Files />
-      <AppBar subjectCode={subject.code} />
+      <AppBar />
       <h1>{subject.code}</h1>
       {isUserInRoom && <Room />}
     </Wrapper>
   );
 };
 
-const mapStoreStateToProps = ({ room, subjects }) => {
+const mapStoreStateToProps = ({ room, subjects, socket }) => {
   return {
-    ...room,
-    ...subjects,
+    subjects,
+    room,
+    socketOpen: socket.socketOpen,
   };
 };
 

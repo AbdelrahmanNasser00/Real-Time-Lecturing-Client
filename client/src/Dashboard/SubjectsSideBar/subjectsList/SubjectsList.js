@@ -9,10 +9,15 @@ const MainContainer = styled("div")({
 });
 
 const SubjectsList = ({ subjects }) => {
+
   return (
     <MainContainer>
-      {subjects.map((subject, index) => (
-        <SubjectsListItem key={index} name={subject.name} code={subject.code} />
+      {subjects.map((subject) => (
+        <SubjectsListItem
+          key={subject.id}
+          name={subject.name}
+          code={subject.code}
+        />
       ))}
     </MainContainer>
   );

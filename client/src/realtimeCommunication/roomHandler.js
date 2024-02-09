@@ -10,10 +10,10 @@ import {
 import * as socketConnection from "./socketConnection";
 import * as webRTCHandler from "./webRTCHandler";
 
-export const createNewRoom = (subjectCode) => {
+export const createNewRoom = (subjectId) => {
   const successCallBackFunction = () => {
     store.dispatch(setOpenRoom(true, true));
-    socketConnection.createNewRoom({ subjectCode });
+    socketConnection.createNewRoom({ subjectId });
   };
   webRTCHandler.getLocalStreamPreview(successCallBackFunction);
 };
