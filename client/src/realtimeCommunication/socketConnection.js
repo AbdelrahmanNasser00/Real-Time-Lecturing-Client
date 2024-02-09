@@ -18,6 +18,7 @@ export const connectWithSocketServer = (userDetails) => {
       token: jwtToken,
     },
   });
+
   socket.on("connect", () => {
     console.log("succesfully connected with socket.io server");
     console.log(socket.id);

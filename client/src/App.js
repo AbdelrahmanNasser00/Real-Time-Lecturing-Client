@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./authPages/LoginPage/LoginPage";
 import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import Dashboard from "./Dashboard/Dashboard";
 import AlertNotification from "./shared/components/AlertNotification";
 import Subject from "./Dashboard/Subject";
+import HomePage from "./HomePage/HomePage";
 import "./App.css";
 
 function App() {
@@ -27,11 +23,8 @@ function App() {
             <Dashboard />
           </Route>
           <Route path="/subject/:id" component={Subject} />
-          {/* <Route exact path="/subject">
-            <Subject />
-          </Route> */}
           <Route path="/">
-            <Redirect to="/dashboard" />
+            <HomePage />
           </Route>
         </Switch>
       </Router>

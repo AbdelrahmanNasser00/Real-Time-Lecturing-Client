@@ -1,4 +1,13 @@
 export const logout = () => {
-   localStorage.clear();
+  localStorage.clear();
   window.location.pathname = "/login";
+};
+
+export const checkUserDetails = (setIsLoading) => {
+  const userDetails = localStorage.getItem("user");
+  if (!userDetails) {
+    logout();
+  } else {
+    setIsLoading(false);
+  }
 };

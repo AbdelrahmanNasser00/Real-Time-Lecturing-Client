@@ -9,23 +9,10 @@ const MainContainer = styled("div")({
 });
 // console.log()
 const SubjectsList = ({ subjects }) => {
-  const x = [
-    {
-      id: "65c2cfb3c48176810e7f783c",
-      code: "CS361",
-      name: "Artificial Intelligence",
-    },
-    {
-      id: "65c2d08e7b2f40a04cfce1b5",
-      code: "CS351",
-      name: "Computer Graphics",
-    },
-  ];
-  console.log("sub", subjects);
-  console.log("x", x);
+
   return (
     <MainContainer>
-      {x.map((subject) => (
+      {subjects.map((subject) => (
         <SubjectsListItem
           key={subject.id}
           name={subject.name}

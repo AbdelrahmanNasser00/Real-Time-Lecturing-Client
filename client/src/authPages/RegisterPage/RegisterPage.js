@@ -8,6 +8,9 @@ import { connect } from "react-redux";
 import { getActions } from "../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
 import VerificationPage from "./VerificationPage";
+import Header from "../../shared/components/Header";
+import RegisterPageHeader from "./RegisterPageHeader";
+import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
 
 const RegisterPage = ({ register, verify }) => {
   const history = useHistory();
@@ -53,38 +56,43 @@ const RegisterPage = ({ register, verify }) => {
 
   return (
     <>
-      {!showValidationCode && (
-        <AuthBox>
+      <Header />
+      <div className="container">
+        {!showValidationCode && (
           <>
-            <Typography variant="h5" sx={{ color: "white " }}>
-              Create an account
-            </Typography>
-            <RegisterPageInputs
-              mail={mail}
-              setMail={setMail}
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
-            />
-            <RegisterPageFooter
-              handleRegister={handleRegister}
-              showValidationCode={showValidationCode}
-              setShowValidationCode={setShowValidationCode}
-              isFormValid={isFormValid}
-            />
+            <div className="svg-image-container">
+              <img src={BackGroundImage} alt="register pic" />
+            </div>
+            <AuthBox>
+              <RegisterPageHeader />
+              <Typography variant="h5" sx={{ color: "white " }}>
+                Create an account
+              </Typography>
+              <RegisterPageInputs
+                mail={mail}
+                setMail={setMail}
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+              />
+              <RegisterPageFooter
+                handleRegister={handleRegister}
+                showValidationCode={showValidationCode}
+                setShowValidationCode={setShowValidationCode}
+                isFormValid={isFormValid}
+              />
+            </AuthBox>
           </>
-        </AuthBox>
-      )}
-      {showValidationCode && (
-        <div className="container">
+        )}
+        {showValidationCode && (
           <VerificationPage
             handleVerify={handleVerify}
             verificationCode={verificationCode}
             setVerificationCode={setVerificationCode}
           />
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };
