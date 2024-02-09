@@ -35,7 +35,7 @@ const LoginPage = ({ login }) => {
       <Header />
       <div className="container">
         <div className="svg-image-container">
-          <img src={BackGroundImage} />
+          <img src={BackGroundImage} alt="login pic" />
         </div>
         <AuthBox>
           <LoginPageHeader />

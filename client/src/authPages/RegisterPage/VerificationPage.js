@@ -28,7 +28,7 @@ const VerificationPage = ({
   return (
     <>
       <div className="svg-image-container">
-        <img src={BackGroundImage} />
+        <img src={BackGroundImage} alt="verification pic" />
       </div>
       <AuthBox>
         <h2 className="verf-h2">Verify your email</h2>

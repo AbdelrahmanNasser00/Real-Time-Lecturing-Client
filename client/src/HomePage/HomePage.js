@@ -8,7 +8,7 @@ const HomePage = () => {
       <Header />
       <div className="container">
         <div className="home-img-container">
-          <img src={BackGroundImage}></img>
+          <img src={BackGroundImage} alt="home pic"></img>
         </div>
         <div className="text">
           <h2 className="home-h2">

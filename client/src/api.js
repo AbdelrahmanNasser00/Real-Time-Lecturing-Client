@@ -6,7 +6,12 @@ import { logout } from "./shared/utils/auth";
 //   timeout: 5000,
 // });
 const apiClient = axios.create({
+<<<<<<< HEAD
   baseURL: "http://localhost:8080/api",
+=======
+  baseURL: "https://realtime-lecturing-api.onrender.com/api",
+  // baseURL: "http://localhost:8080/api",
+>>>>>>> 58beaff18 (solve alert problem)
   timeout: 5000,
 });
 

@@ -61,7 +61,7 @@ const RegisterPage = ({ register, verify }) => {
         {!showValidationCode && (
           <>
             <div className="svg-image-container">
-              <img src={BackGroundImage} />
+              <img src={BackGroundImage} alt="register pic" />
             </div>
             <AuthBox>
               <RegisterPageHeader />
