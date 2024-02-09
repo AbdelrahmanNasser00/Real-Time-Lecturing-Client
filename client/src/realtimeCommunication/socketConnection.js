@@ -6,9 +6,9 @@ import * as webRTCHandler from "./webRTCHandler";
 
 let socket = null;
 
-export const connectWithSocketServer = (userDetails) => {
+export const connectWithSocketServer = async (userDetails) => {
   const jwtToken = userDetails.token;
-  socket = io("https://realtime-lecturing-api.onrender.com", {
+  socket = await io("https://realtime-lecturing-api.onrender.com", {
     auth: {
       token: jwtToken,
     },

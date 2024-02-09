@@ -12,14 +12,12 @@ import Files from "./SubjectBar/Files";
 
 const Subject = ({ setUserDetails, isUserInRoom, subjects }) => {
   const [isLoading, setIsLoading] = useState(true);
-  // const { code } = useParams();
   const { id } = useParams();
   console.log("from subject componendt: subjects: ", subjects);
 
-  // const subject = subjects.find((subject) => subject.code === parseInt(id));
   const subject = subjects.find((subject) => subject.code === id);
   useUserDetails(setUserDetails, setIsLoading);
-  if (isLoading) {
+  if (isLoading || !subject) {
     return <Spinner />;
   }
   console.log("from subject componendt: ", subject);
