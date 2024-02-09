@@ -3,12 +3,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useHistory } from "react-router-dom";
 
-const SubjectsListItem = ({ name }) => {
+const SubjectsListItem = ({ name, code }) => {
   const history = useHistory();
 
   const handleSubjectClick = () => {
     console.log("subject clicked");
-    history.push("/subject");
+    console.log("code: ", code);
+    history.push(`/subject/${code}`);
   };
   return (
     <Button

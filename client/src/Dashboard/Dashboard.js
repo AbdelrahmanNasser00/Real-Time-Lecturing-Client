@@ -15,7 +15,6 @@ const Dashboard = ({ setUserDetails }) => {
   if (isLoading) {
     return <Spinner />;
   }
-
   return (
     <Wrapper>
       <SubjectSideBar />

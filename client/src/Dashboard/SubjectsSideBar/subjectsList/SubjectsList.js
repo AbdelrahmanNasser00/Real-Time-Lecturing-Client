@@ -12,7 +12,7 @@ const SubjectsList = ({ subjects }) => {
   return (
     <MainContainer>
       {subjects.map((subject, index) => (
-        <SubjectsListItem key={index} name={subject.name} />
+        <SubjectsListItem key={index} name={subject.name} code={subject.code} />
       ))}
     </MainContainer>
   );
