@@ -10,13 +10,14 @@ import Spinner from "../shared/components/Spinner";
 import { useParams } from "react-router-dom";
 import Files from "./SubjectBar/Files";
 
-const Subject = ({ setUserDetails, isUserInRoom, subjects }) => {
+const Subject = ({ setUserDetails, room, subjects, socketOpen }) => {
+  const isUserInRoom = room.isUserInRoom;
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
-  const subject = subjects.find((subject) => subject.code === id);
+  const subject = subjects.subjects.find((subject) => subject.code === id);
   useUserDetails(setUserDetails, setIsLoading);
-  if (isLoading || !subject) {
+  if (isLoading || !subjects.subjects.length) {
     return <Spinner />;
   }
 
@@ -31,10 +32,19 @@ const Subject = ({ setUserDetails, isUserInRoom, subjects }) => {
   );
 };
 
-const mapStoreStateToProps = ({ room, subjects }) => {
+// const mapStoreStateToProps = ({ room, subjects }) => {
+//   return {
+//     ...room,
+//     ...subjects,
+//   };
+// };
+
+const mapStoreStateToProps = ({ room, subjects, socket }) => {
+  // Assuming the socket state is under 'socket' key
   return {
-    ...room,
-    ...subjects,
+    subjects,
+    room,
+    socketOpen: socket.socketOpen, // Pass socketOpen state from Redux store to props
   };
 };
 
