@@ -7,7 +7,6 @@ const MainContainer = styled("div")({
   flexGrow: 1,
   width: "100%",
 });
-// console.log()
 const SubjectsList = ({ subjects }) => {
 
   return (

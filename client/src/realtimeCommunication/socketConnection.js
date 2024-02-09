@@ -8,6 +8,7 @@ let socket = null;
 
 export const connectWithSocketServer = (userDetails) => {
   const jwtToken = userDetails.token;
+  console.log(`jwtToken ${jwtToken}`);
   // socket = io("https://realtime-lecturing-api.onrender.com", {
   //   auth: {
   //     token: jwtToken,
@@ -32,10 +33,12 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("create-room", (data) => {
+    console.log("create-room event came");
     roomHandler.newRoomCreated(data);
   });
 
   socket.on("active-rooms", (data) => {
+    console.log("acitve room event came");
     roomHandler.updateActiveRooms(data);
   });
 
