@@ -14,11 +14,11 @@ const MainContainer = styled("div")({
   backgroundColor: "#202225",
 });
 
-const SideBar = ({ activeRooms, isUserInRoom }) => {
+const SideBar = ({ activeRooms, isUserInRoom, subjectCode }) => {
   return (
     <MainContainer>
       <MainPageButton />
-      <CreateRoomButton isUserInRoom={isUserInRoom} />
+      <CreateRoomButton isUserInRoom={isUserInRoom} subjectCode={subjectCode} />
       {activeRooms.map((room) => (
         <ActiveRoomButton
           roomId={room.roomId}

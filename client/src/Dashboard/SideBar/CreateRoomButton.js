@@ -3,9 +3,9 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import * as roomHandler from "../../realtimeCommunication/roomHandler";
 
-const CreateRoomButton = ({ isUserInRoom }) => {
+const CreateRoomButton = ({ isUserInRoom, subjectCode }) => {
   const createNewRoomHandler = () => {
-    roomHandler.createNewRoom();
+    roomHandler.createNewRoom(subjectCode);
   };
 
   return (

@@ -1,9 +1,13 @@
 import axios from "axios";
 import { logout } from "./shared/utils/auth";
 
+// const apiClient = axios.create({
+//   baseURL: "https://realtime-lecturing-api.onrender.com/api",
+//   timeout: 5000,
+// });
 const apiClient = axios.create({
-  baseURL: "https://realtime-lecturing-api.onrender.com/api",
-  timeout: 5000,
+  baseURL: "http://localhost:8080/api",
+  timeout: 1000,
 });
 
 apiClient.interceptors.request.use(

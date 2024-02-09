@@ -24,7 +24,7 @@ const Subject = ({ setUserDetails, isUserInRoom, subjects }) => {
     <Wrapper>
       <SideBar />
       <Files />
-      <AppBar />
+      <AppBar subjectCode={subject.code} />
       <h1>{subject.code}</h1>
       {isUserInRoom && <Room />}
     </Wrapper>

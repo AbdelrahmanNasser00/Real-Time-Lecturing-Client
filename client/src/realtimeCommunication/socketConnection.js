@@ -6,14 +6,18 @@ import * as webRTCHandler from "./webRTCHandler";
 
 let socket = null;
 
-export const connectWithSocketServer = async (userDetails) => {
+export const connectWithSocketServer = (userDetails) => {
   const jwtToken = userDetails.token;
-  socket = await io("https://realtime-lecturing-api.onrender.com", {
+  // socket = io("https://realtime-lecturing-api.onrender.com", {
+  //   auth: {
+  //     token: jwtToken,
+  //   },
+  // });
+  socket = io("http://localhost:8080", {
     auth: {
       token: jwtToken,
     },
   });
-
   socket.on("connect", () => {
     console.log("succesfully connected with socket.io server");
     console.log(socket.id);
@@ -53,8 +57,8 @@ export const connectWithSocketServer = async (userDetails) => {
   });
 };
 
-export const createNewRoom = () => {
-  socket.emit("create-room");
+export const createNewRoom = (data) => {
+  socket.emit("create-room", data);
 };
 
 export const joinRoom = (data) => {
