@@ -3,12 +3,11 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/system";
 
 const BoxWrapper = styled("div")({
-  width: "100%",
-  height: "100vh",
+  width: "50%",
+  height: "89vh",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  background: "#5865F2",
 });
 
 const AuthBox = (props) => {
@@ -16,16 +15,16 @@ const AuthBox = (props) => {
     <BoxWrapper>
       <Box
         sx={{
-          width: 700,
-          height: 400,
-          bgcolor: "#36393f",
-          borderRadius: "5px",
-          boxShadow: "0 2px 10px 0 rgb(0 0 0 / 20%)",
+          width: 400,
+          maxWidth: "90%",
+          bgcolor: "#ffffff",
+          borderRadius: "10px",
+          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
           display: "flex",
           flexDirection: "column",
           padding: "25px",
-        }}
-      >
+          alignItems: "center",
+        }}>
         {props.children}
       </Box>
     </BoxWrapper>

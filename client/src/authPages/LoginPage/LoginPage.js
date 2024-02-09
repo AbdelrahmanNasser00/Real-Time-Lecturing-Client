@@ -3,10 +3,13 @@ import AuthBox from "../../shared/components/AuthBox";
 import LoginPageFooter from "./LoginPageFooter";
 import LoginPageHeader from "./LoginPageHeader";
 import LoginPageInputs from "./LoginPageInputs";
+import Header from "../../shared/components/Header";
 import { validateLoginForm } from "../../shared/utils/validators";
 import { connect } from "react-redux";
 import { getActions } from "../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
+import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
+import "../../shared/UI/css/login.css";
 
 const LoginPage = ({ login }) => {
   const history = useHistory();
@@ -28,16 +31,27 @@ const LoginPage = ({ login }) => {
   };
 
   return (
-    <AuthBox>
-      <LoginPageHeader />
-      <LoginPageInputs
-        mail={mail}
-        setMail={setMail}
-        password={password}
-        setPassword={setPassword}
-      />
-      <LoginPageFooter isFormValid={isFormValid} handleLogin={handleLogin} />
-    </AuthBox>
+    <>
+      <Header />
+      <div className="container">
+        <div className="svg-image-container">
+          <img src={BackGroundImage} />
+        </div>
+        <AuthBox>
+          <LoginPageHeader />
+          <LoginPageInputs
+            mail={mail}
+            setMail={setMail}
+            password={password}
+            setPassword={setPassword}
+          />
+          <LoginPageFooter
+            isFormValid={isFormValid}
+            handleLogin={handleLogin}
+          />
+        </AuthBox>
+      </div>
+    </>
   );
 };
 

@@ -10,6 +10,7 @@ import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import Dashboard from "./Dashboard/Dashboard";
 import AlertNotification from "./shared/components/AlertNotification";
 import Subject from "./Dashboard/Subject";
+import HomePage from "./HomePage/HomePage";
 import "./App.css";
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
             <Subject />
           </Route> */}
           <Route path="/">
-            <Redirect to="/dashboard" />
+            <HomePage />
           </Route>
         </Switch>
       </Router>
