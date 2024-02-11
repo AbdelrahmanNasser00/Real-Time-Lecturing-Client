@@ -14,7 +14,11 @@ import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
 
 const RegisterPage = ({ register, verify }) => {
   const history = useHistory();
+  const userDetails = localStorage.getItem("user");
 
+  if (userDetails) {
+    history.push("./dashboard");
+  }
   const [mail, setMail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

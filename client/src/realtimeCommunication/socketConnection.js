@@ -38,7 +38,7 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("active-rooms", (data) => {
-    console.log("acitve room event came");
+    console.log("acitve room event came", data);
     roomHandler.updateActiveRooms(data);
   });
 

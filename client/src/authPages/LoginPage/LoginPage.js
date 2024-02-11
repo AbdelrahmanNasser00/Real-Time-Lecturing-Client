@@ -13,6 +13,11 @@ import "../../shared/UI/css/login.css";
 
 const LoginPage = ({ login }) => {
   const history = useHistory();
+  const userDetails = localStorage.getItem("user");
+
+  if (userDetails) {
+    history.push("./dashboard");
+  }
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
