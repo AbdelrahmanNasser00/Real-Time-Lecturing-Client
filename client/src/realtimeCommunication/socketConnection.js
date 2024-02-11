@@ -9,16 +9,16 @@ let socket = null;
 export const connectWithSocketServer = (userDetails) => {
   const jwtToken = userDetails.token;
   console.log(`jwtToken ${jwtToken}`);
-  socket = io("https://realtime-lecturing-api.onrender.com", {
-    auth: {
-      token: jwtToken,
-    },
-  });
-  // socket = io("http://localhost:8080", {
+  // socket = io("https://realtime-lecturing-api.onrender.com", {
   //   auth: {
   //     token: jwtToken,
   //   },
   // });
+  socket = io("http://localhost:8080", {
+    auth: {
+      token: jwtToken,
+    },
+  });
 
   socket.on("connect", () => {
     console.log("succesfully connected with socket.io server");

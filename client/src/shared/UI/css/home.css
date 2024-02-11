@@ -1,3 +1,10 @@
+:root {
+    --main-color: #429EBD;
+    /* Set your main color */
+    --secondary-color: #9fe7f5;
+    /* Set your secondary color */
+}
+
 /* Start Header */
 header {
     background-color: #eeeeee;
@@ -97,13 +104,13 @@ header .navigation .contact:hover {
 .container .home-h2 {
     font-family: 'Roboto', sans-serif;
     /* color: #f7ad19; */
-    color: #f7a5c6;
+    color: var(--secondary-color);
     font-size: 35px;
 }
 
 .container .wel {
     font-size: 80px;
-    color: #f36bab;
+    color: var(--main-color);
     /* color: #f7ad19; */
     /* color: #f27f0c; */
 }
