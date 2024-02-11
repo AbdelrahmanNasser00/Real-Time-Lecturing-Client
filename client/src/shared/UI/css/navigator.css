@@ -1,0 +1,81 @@
+.Navigator-container {
+    height: calc(100% - 163px);
+    background-color: azure;
+    top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border-radius: 40px;
+    padding-top: 105px;
+}
+
+.dashboard,
+.messages {
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    /* Adjust the margin-top as needed */
+}
+
+.dashboard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    /* Adjust the width as needed */
+    background-color: #ff5733;
+    /* Set the color you want */
+    transition: background-color 0.3s ease;
+}
+
+.dashboard:hover,
+.dashboard:active,
+.dashboard:focus,
+.messages:hover,
+.messages:active,
+.messages:focus {
+    background-color: lightgray;
+}
+
+.dashboard:hover::before,
+.dashboard:active::before,
+.dashboard:focus::before,
+.messages:hover::before,
+.messages:active::before,
+.messages:focus::before {
+    background-color: lightgray;
+    /* Set the color you want for the pseudo-element */
+}
+
+.dashboard-btn,
+.messages-btn {
+    margin-left: 10px;
+    margin-right: 10px;
+    /* Add margin-right to move the buttons to the right */
+    border: none;
+    background-color: transparent;
+    color: gray;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: color 0.3s ease;
+}
+
+.dashboard-btn:hover,
+.dashboard-btn:active,
+.dashboard-btn:focus,
+.messages-btn:hover,
+.messages-btn:active,
+.messages-btn:focus {
+    text-decoration: underline;
+    color: #ff5733;
+    /* Set the color you want for the active state */
+}

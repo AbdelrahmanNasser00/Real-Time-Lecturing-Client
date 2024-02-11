@@ -18,7 +18,7 @@ export default function BasicMenu() {
 
   return (
     <div>
-      <IconButton onClick={handleMenuOpen} style={{ color: "white" }}>
+      <IconButton onClick={handleMenuOpen} style={{ color: "black" }}>
         <MoreVertIcon />
       </IconButton>
       <Menu
@@ -28,8 +28,7 @@ export default function BasicMenu() {
         onClose={handleMenuClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",
-        }}
-      >
+        }}>
         <MenuItem onClick={logout}>Logout</MenuItem>
       </Menu>
     </div>

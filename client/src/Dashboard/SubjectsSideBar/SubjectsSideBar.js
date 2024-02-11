@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "@mui/system";
 import SubjectsList from "./subjectsList/SubjectsList";
 import Title from "../../shared/components/Title";
+import "../../shared/UI/css/SubjectsSideBar.css";
 const MainContainer = styled("div")({
   width: "224px",
   height: "100%",
@@ -13,10 +14,10 @@ const MainContainer = styled("div")({
 
 const SubjectsSideBar = () => {
   return (
-    <MainContainer>
-      <Title title="Your Subjects" />
+    <div className="SubjectsSideBar-container">
+      <h1 className="subject-h1">Your Subjects</h1>
       <SubjectsList />
-    </MainContainer>
+    </div>
   );
 };
 

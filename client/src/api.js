@@ -1,14 +1,14 @@
 import axios from "axios";
 import { logout } from "./shared/utils/auth";
 
-// const apiClient = axios.create({
-//   baseURL: "https://realtime-lecturing-api.onrender.com/api",
-//   timeout: 5000,
-// });
 const apiClient = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://realtime-lecturing-api.onrender.com/api",
   timeout: 5000,
 });
+// const apiClient = axios.create({
+//   baseURL: "http://localhost:8080/api",
+//   timeout: 5000,
+// });
 
 apiClient.interceptors.request.use(
   (config) => {
@@ -60,4 +60,3 @@ export const verify = async (data) => {
     };
   }
 };
-

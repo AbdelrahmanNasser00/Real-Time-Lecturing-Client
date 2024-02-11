@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../shared/components/Spinner";
-import useUserDetails from "../shared/utils/useUserDetails";
 import SubjectSideBar from "./SubjectsSideBar/SubjectsSideBar";
-import AppBar from "./AppBar/AppBar";
 import { connect } from "react-redux";
 import { getActions } from "../store/actions/authActions";
 import Wrapper from "../shared/components/Wrapper";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../shared/utils/auth";
+import "../shared/UI/css/dashboard.css";
+import DashboardHeader from "../shared/components/dashboardHeader";
 
 const Dashboard = ({ setUserDetails, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,10 +30,14 @@ const Dashboard = ({ setUserDetails, socketOpen }) => {
     return <Spinner />;
   }
   return (
-    <Wrapper>
-      <SubjectSideBar />
-      <AppBar />
-    </Wrapper>
+    <>
+      <div className="header-container">
+        <DashboardHeader />
+      </div>
+      <div className="dashboard-container">
+        <SubjectSideBar />
+      </div>
+    </>
   );
 };
 
@@ -45,7 +49,7 @@ const mapActionsToProps = (dispatch) => {
 
 const mapStoreStateToProps = ({ socket }) => {
   return {
-    socketOpen: socket.socketOpen
+    socketOpen: socket.socketOpen,
   };
 };
 

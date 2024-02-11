@@ -45,7 +45,6 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
       <SideBar subjectId={subject.id} />
       <Files />
       <AppBar />
-      <h1>{subject.code}</h1>
       {isUserInRoom && <Room />}
     </Wrapper>
   );

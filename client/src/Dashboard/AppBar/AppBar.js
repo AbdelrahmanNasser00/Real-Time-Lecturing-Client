@@ -8,13 +8,13 @@ const MainContainer = styled("div")({
   right: "0",
   top: "0",
   height: "48px",
-  borderBottom: "1px solid black",
-  backgroundColor: "#36393f",
-  width: "calc(100% - 326px)",
+  backgroundColor: "white",
+  width: "100%",
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "end",
   padding: "0 15px",
+  color: "black",
 });
 
 const AppBar = () => {

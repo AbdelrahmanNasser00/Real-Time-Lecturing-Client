@@ -1,16 +1,11 @@
 import React from "react";
-import { styled } from "@mui/system";
 import SubjectsListItem from "./SubjectsListItem";
 import { connect } from "react-redux";
+import "../../../shared/UI/css/subject.css";
 
-const MainContainer = styled("div")({
-  flexGrow: 1,
-  width: "100%",
-});
 const SubjectsList = ({ subjects }) => {
-
   return (
-    <MainContainer>
+    <div className="subjectList-container">
       {subjects.map((subject) => (
         <SubjectsListItem
           key={subject.id}
@@ -18,7 +13,7 @@ const SubjectsList = ({ subjects }) => {
           code={subject.code}
         />
       ))}
-    </MainContainer>
+    </div>
   );
 };
 
