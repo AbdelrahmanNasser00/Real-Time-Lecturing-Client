@@ -4,6 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { logout } from "../../shared/utils/auth";
+import "../../shared/UI/css/home.css";
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,7 +18,7 @@ export default function BasicMenu() {
   };
 
   return (
-    <div>
+    <div className="dropdown-btn">
       <IconButton onClick={handleMenuOpen} style={{ color: "black" }}>
         <MoreVertIcon />
       </IconButton>

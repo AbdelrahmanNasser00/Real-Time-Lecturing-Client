@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "./SideBar/SideBar";
-import AppBar from "./AppBar/AppBar";
 import { connect } from "react-redux";
 import { getActions } from "../store/actions/authActions";
 import Room from "./Room/Room";
@@ -10,6 +9,7 @@ import { useParams } from "react-router-dom";
 import Files from "./SubjectBar/Files";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../shared/utils/auth";
+import DashboardHeader from "../shared/components/dashboardHeader";
 
 const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,12 +41,17 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   }
 
   return (
-    <Wrapper>
-      <SideBar subjectId={subject.id} />
-      <Files />
-      <AppBar />
-      {isUserInRoom && <Room />}
-    </Wrapper>
+    <>
+      <div className="header-container">
+        <DashboardHeader />
+      </div>
+      <Wrapper>
+        <SideBar subjectId={subject.id} />
+        <Files />
+
+        {isUserInRoom && <Room />}
+      </Wrapper>
+    </>
   );
 };
 

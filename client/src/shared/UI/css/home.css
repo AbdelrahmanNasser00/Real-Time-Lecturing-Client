@@ -29,7 +29,7 @@ button {
 
 header .navigation {
     list-style: none;
-    padding-right: 100px;
+    padding-right: 20px;
     font-size: 16px;
     display: flex;
 }
@@ -140,4 +140,9 @@ header .navigation .contact:hover {
 .home-img {
     width: 100%;
     height: auto;
+}
+
+.dropdown-btn {
+    display: flex;
+    flex-direction: row;
 }

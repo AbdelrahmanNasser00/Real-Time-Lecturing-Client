@@ -5,11 +5,14 @@ import FileList from "./FilesList/FilesList";
 
 const MainContainer = styled("div")({
   width: "224px",
-  height: "100%",
+  height: "calc(100vh - 64px)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: "#2F3136",
+  backgroundColor: "white",
+  borderRadius: "40px",
+  boxShadow: "0px 0px 4px gray",
+  margin: "6px",
 });
 
 const Files = () => {

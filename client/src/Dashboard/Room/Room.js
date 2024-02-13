@@ -5,8 +5,8 @@ import VideosContainer from "./VideosContainer";
 import RoomButtons from "./RoomButtons/RoomButtons";
 
 const MainContainer = styled("div")({
-  position: "absolute",
-  borderRadius: "8px",
+  position: "relative",
+  borderRadius: "40px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -15,8 +15,8 @@ const MainContainer = styled("div")({
 });
 
 const fullScreenRoomStyle = {
-  width: "100%",
-  height: "100vh",
+  width: "81%",
+  height: "calc(100vh - 56px)",
 };
 
 const minimizedRoomStyle = {
@@ -35,8 +35,7 @@ const Room = () => {
 
   return (
     <MainContainer
-      style={isRoomMinimized ? minimizedRoomStyle : fullScreenRoomStyle}
-    >
+      style={isRoomMinimized ? minimizedRoomStyle : fullScreenRoomStyle}>
       <VideosContainer />
       <RoomButtons />
       <ResizeRoomButton

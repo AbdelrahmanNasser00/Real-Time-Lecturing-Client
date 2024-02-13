@@ -7,11 +7,14 @@ import ActiveRoomButton from "./ActiveRoomButton";
 
 const MainContainer = styled("div")({
   width: "72px",
-  height: "100%",
+  height: "calc(100vh - 64px)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: "#202225",
+  backgroundColor: "white",
+  margin: "6px",
+  boxShadow: "0px 0px 4px gray",
+  borderRadius: "40px",
 });
 
 const SideBar = ({ activeRooms, isUserInRoom, subjectId }) => {

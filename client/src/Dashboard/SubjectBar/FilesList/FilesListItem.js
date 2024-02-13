@@ -23,12 +23,12 @@ const FilesListItem = ({ name }) => {
         position: "relative",
       }}>
       {!isExpanded && (
-        <span className="material-symbols-outlined" style={{ color: "white" }}>
+        <span className="material-symbols-outlined" style={{ color: "black" }}>
           expand_more
         </span>
       )}
       {isExpanded && (
-        <span className="material-symbols-outlined" style={{ color: "white" }}>
+        <span className="material-symbols-outlined" style={{ color: "black" }}>
           expand_less
         </span>
       )}
@@ -37,7 +37,7 @@ const FilesListItem = ({ name }) => {
         style={{
           marginLeft: "7px",
           fontWeight: 700,
-          color: "white",
+          color: "black",
         }}
         variant="subtitle1"
         align="left">

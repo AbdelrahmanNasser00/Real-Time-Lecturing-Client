@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../UI/css/home.css";
+import DropdownMenu from "../../Dashboard/AppBar/DropdownMenu";
 
 const DashboardHeader = () => {
   return (
@@ -17,6 +18,7 @@ const DashboardHeader = () => {
             <Link to="/">Home</Link>
           </li>
         </ul>
+        <DropdownMenu />
       </div>
     </header>
   );
