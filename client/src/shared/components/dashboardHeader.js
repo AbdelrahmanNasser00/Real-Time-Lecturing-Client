@@ -17,7 +17,7 @@ const DashboardHeader = () => {
           Realtime Lecturing
         </Link>
       </h1>
-      <DashboardNavigation isClicked={isClicked} />
+      <DashboardNavigation isClicked={isClicked} setIsClicked={setIsClicked} />
       <div className="mobile" onClick={handleMobileClick}>
         <i className={isClicked ? "fas fa-times" : "fas fa-bars"}></i>
       </div>

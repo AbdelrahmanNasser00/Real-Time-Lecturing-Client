@@ -16,7 +16,7 @@ const Header = () => {
           Realtime Lecturing
         </Link>
       </h1>
-      <Navigation isClicked={isClicked} />
+      <Navigation isClicked={isClicked} setIsClicked={setIsClicked} />
       <div className="mobile" onClick={handleMobileClick}>
         <i className={isClicked ? "fas fa-times" : "fas fa-bars"}></i>
       </div>
