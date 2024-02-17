@@ -122,9 +122,7 @@
         font-size: 20px;
     }
 
-    .container-home {
-        flex-direction: column-reverse;
-    }
+    .container-home {}
 
 }
 
@@ -154,6 +152,7 @@
 
     .container-home {
         top: 10px;
+
     }
 
 
