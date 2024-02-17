@@ -9,7 +9,6 @@
     box-shadow: 0px 0px 13px gray;
     cursor: pointer;
     transition: all 0.3s ease;
-    /* Added transition property */
 }
 
 .subject-container:hover {
@@ -21,7 +20,7 @@
     height: 100%;
     position: relative;
     display: flex;
-    margin: 0px 51px 0px 35px;
+    margin: 0px 30px 0px 30px;
 }
 
 .home-img {
@@ -45,4 +44,56 @@
 
 .subject-container.ds-subject {
     background-color: #514d9e;
+}
+
+.subject-left-half {
+    width: 67%;
+}
+
+.subject-img-container img {
+    width: 100%;
+}
+
+@media screen and (max-width:1024px) {
+    .subject-left-half {
+        font-size: 1.5vw;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+
+
+    .subjectList-container {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subject-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .subject-img-container {
+        display: none;
+    }
+
+    .subject-left-half {
+        width: 100%;
+        font-size: 4vw;
+    }
+}
+
+@media screen and (height:1024px) {
+    .subject-left-half h4 {
+        margin: 0;
+    }
+
+    .subject-left-half p {
+        font-size: 3vw;
+    }
+
 }

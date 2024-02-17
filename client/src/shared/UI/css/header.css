@@ -146,3 +146,9 @@ header .navigation .contact:hover {
     }
 
 }
+
+@media screen and (max-width: 360px) {
+    .logo {
+        font-size: 15px;
+    }
+}

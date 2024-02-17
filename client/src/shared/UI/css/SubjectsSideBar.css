@@ -10,10 +10,24 @@
     border-radius: 40px;
     padding: 25px;
     box-shadow: 0px 0px 5px #999999;
+    align-items: center;
 
 }
 
 .subject-h1 {
     text-align: center;
     padding: 25px;
+}
+
+@media screen and (max-width:768px) {
+    .SubjectsSideBar-container {
+        width: 100%;
+        top: 0;
+        padding: 0px;
+    }
+
+    .subject-h1 {
+        text-align: center;
+        padding: 0px;
+    }
 }

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../UI/css/home.css";
-import DropdownMenu from "../../Dashboard/AppBar/DropdownMenu";
+import DashboardNavigation from "./DashboardNavigation";
 
 const DashboardHeader = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleMobileClick = () => {
+    setIsClicked(!isClicked);
+  };
   return (
     <header>
       <h1>
@@ -12,13 +17,9 @@ const DashboardHeader = () => {
           Realtime Lecturing
         </Link>
       </h1>
-      <div className="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </ul>
-        <DropdownMenu />
+      <DashboardNavigation isClicked={isClicked} />
+      <div className="mobile" onClick={handleMobileClick}>
+        <i className={isClicked ? "fas fa-times" : "fas fa-bars"}></i>
       </div>
     </header>
   );
