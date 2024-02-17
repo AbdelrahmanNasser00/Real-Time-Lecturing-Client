@@ -1,21 +1,113 @@
-/* .container {
-    display: flex;
-    flex-direction: column-reverse;
-    height: 89vh;
-} */
+:root {
+    --main-color: #429EBD;
+    /* Set your main color */
+    --secondary-color: #9fe7f5;
+    /* Set your secondary color */
+}
 
-.svg-image-container {
-    max-width: 41%;
-    max-height: 89vh;
+
+.container-login {
     width: 100%;
+    flex-direction: row-reverse;
+    height: 89vh;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    display: flex;
+
+}
+
+
+.login-image-container {
+    max-width: 50%;
+    max-height: 87vh;
+    width: auto;
     height: auto;
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    right: 50px;
+    right: 20px;
+    margin: auto;
 }
 
-.svg-image-container img {
+.login-image-container img {
     width: 100%;
     height: auto;
+}
+
+.AuthBox {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+    box-sizing: border-box;
+    top: 20px;
+}
+
+
+
+
+/* Media queries */
+/* width queries */
+
+
+
+/* Media queries */
+@media screen and (max-width:1920px) {
+    .login-image-container {
+        margin: 0;
+    }
+
+}
+
+@media screen and (max-width:1365px) {
+    .container-login .text p {
+        font-size: 15px;
+    }
+
+    .container-login {
+        gap: 10px;
+    }
+
+    .container-login .home-h2 {
+
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .login-image-container {
+        display: none;
+    }
+
+    .AuthBox {
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+    .login-image-container {
+        display: none;
+    }
+
+    .AuthBox {
+        width: 90%;
+        height: 70%;
+    }
+
+}
+
+/* height queries */
+@media screen and (min-height:768px) {
+    .container-login {
+        height: 80vh;
+    }
+
+
+
 }

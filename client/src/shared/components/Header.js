@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../UI/css/home.css";
-
+import "../UI/css/header.css";
+import Navigation from "./Navigation";
 const Header = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleMobileClick = () => {
+    setIsClicked(!isClicked);
+  };
   return (
     <header>
       <h1>
@@ -11,18 +16,9 @@ const Header = () => {
           Realtime Lecturing
         </Link>
       </h1>
-      <div className="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Sign-Up</Link>
-          </li>
-        </ul>
+      <Navigation isClicked={isClicked} />
+      <div className="mobile" onClick={handleMobileClick}>
+        <i className={isClicked ? "fas fa-times" : "fas fa-bars"}></i>
       </div>
     </header>
   );

@@ -1,18 +1,10 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/system";
-
-const BoxWrapper = styled("div")({
-  width: "50%",
-  height: "89vh",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-});
+import "../UI/css/login.css";
 
 const AuthBox = (props) => {
   return (
-    <BoxWrapper>
+    <div className="AuthBox">
       <Box
         sx={{
           width: 400,
@@ -24,10 +16,11 @@ const AuthBox = (props) => {
           flexDirection: "column",
           padding: "25px",
           alignItems: "center",
+          boxSizing: "border-box",
         }}>
         {props.children}
       </Box>
-    </BoxWrapper>
+    </div>
   );
 };
 

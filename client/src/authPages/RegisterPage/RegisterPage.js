@@ -61,17 +61,15 @@ const RegisterPage = ({ register, verify }) => {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className="container-login">
         {!showValidationCode && (
           <>
-            <div className="svg-image-container">
+            <div className="login-image-container">
               <img src={BackGroundImage} alt="register pic" />
             </div>
             <AuthBox>
               <RegisterPageHeader />
-              <Typography variant="h5" sx={{ color: "white " }}>
-                Create an account
-              </Typography>
+
               <RegisterPageInputs
                 mail={mail}
                 setMail={setMail}

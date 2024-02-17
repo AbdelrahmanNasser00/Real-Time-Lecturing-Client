@@ -1,9 +1,9 @@
 import React from "react";
 import OtpInput from "react-otp-input";
-import "../../shared/UI/css/style.css";
 import AuthBox from "../../shared/components/AuthBox";
 import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
 import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
+import "../../shared/UI/css/verification.css";
 
 const VerificationPage = ({
   handleVerify,

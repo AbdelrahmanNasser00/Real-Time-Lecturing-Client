@@ -4,7 +4,7 @@ import Title from "../../shared/components/Title";
 import FileList from "./FilesList/FilesList";
 
 const MainContainer = styled("div")({
-  width: "224px",
+  width: "10%",
   height: "calc(100vh - 64px)",
   display: "flex",
   flexDirection: "column",

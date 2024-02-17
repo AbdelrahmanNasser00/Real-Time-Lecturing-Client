@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import ActiveRoomButton from "./ActiveRoomButton";
 
 const MainContainer = styled("div")({
-  width: "72px",
+  width: "3%",
   height: "calc(100vh - 64px)",
   display: "flex",
   flexDirection: "column",
