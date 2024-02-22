@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import SideBar from "./SideBar/SideBar";
 import { connect } from "react-redux";
 import { getActions } from "../store/actions/authActions";
-import Room from "./Room/Room";
-import Wrapper from "../shared/components/Wrapper";
 import Spinner from "../shared/components/Spinner";
 import { useParams } from "react-router-dom";
-import Files from "./SubjectBar/Files";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../shared/utils/auth";
-import DashboardHeader from "../shared/components/dashboardHeader";
+import "../shared/UI/css/SubjectPage.css";
+import RegularHeaderAndSidebar from "./Lecture/RegularHeaderAndSidebar";
 
 const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   console.log(subjects.subjects);
   const isUserInRoom = room.isUserInRoom;
+
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
+
     if (!userDetails) {
       logout();
     } else {
@@ -41,17 +40,7 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   }
 
   return (
-    <>
-      <div className="header-container">
-        <DashboardHeader />
-      </div>
-      <Wrapper>
-        <SideBar subjectId={subject.id} />
-        <Files />
-
-        {isUserInRoom && <Room />}
-      </Wrapper>
-    </>
+    <RegularHeaderAndSidebar isUserInRoom={isUserInRoom} subject={subject} />
   );
 };
 

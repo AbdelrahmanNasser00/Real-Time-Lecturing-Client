@@ -20,10 +20,12 @@ const DashboardNavigation = ({ isClicked, setIsClicked }) => {
     <div className="navigation">
       <ul className={isClicked ? "navUl-active" : "navUl"}>
         <li>
-          <Link to="/">Home</Link>
+          <Link className="a" to="/">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/login" onClick={logout}>
+          <Link className="a" to="/" onClick={logout}>
             Logout
           </Link>
         </li>

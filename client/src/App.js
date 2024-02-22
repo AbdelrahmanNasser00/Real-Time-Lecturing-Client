@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import AlertNotification from "./shared/components/AlertNotification";
 import Subject from "./Dashboard/Subject";
 import HomePage from "./HomePage/HomePage";
+import Lecture from "./Dashboard/Lecture/Lecture";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route exact path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route exact path="/lecture">
+            <Lecture />
           </Route>
           <Route path="/subject/:id" component={Subject} />
           <Route path="/">

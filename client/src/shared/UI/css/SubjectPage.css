@@ -1,0 +1,22 @@
+.menu-item {
+    padding-top: 10px;
+    font-size: 13px;
+    font-weight: 400;
+
+}
+
+
+.menu-item:active {}
+
+.Sidebar {
+    background-color: white;
+    border: 1px solid gray;
+}
+
+.css-dip3t8 {
+    background-color: white;
+}
+
+.Sidebar h4 {
+    color: rgb(0, 152, 229);
+}

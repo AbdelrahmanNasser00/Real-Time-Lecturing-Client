@@ -10,7 +10,8 @@ header {
 }
 
 header li,
-a,
+.a,
+.logo,
 button {
     text-decoration: none;
     /* color: #9fe7f5; */

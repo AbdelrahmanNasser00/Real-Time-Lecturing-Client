@@ -18,13 +18,19 @@ const Navigation = ({ isClicked, setIsClicked }) => {
     <div className="navigation">
       <ul className={isClicked ? "navUl-active" : "navUl"}>
         <li>
-          <Link to="/">Home</Link>
+          <Link className="a" to="/">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <Link className="a" to="/login">
+            Login
+          </Link>
         </li>
         <li>
-          <Link to="/register">Sign-Up</Link>
+          <Link className="a" to="/register">
+            Sign-Up
+          </Link>
         </li>
       </ul>
     </div>

@@ -16,7 +16,7 @@ const MainContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: "40px",
+  borderRadius: "0px",
 });
 
 const RoomButtons = (props) => {

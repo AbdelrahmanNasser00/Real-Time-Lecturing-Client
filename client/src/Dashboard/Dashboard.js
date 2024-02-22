@@ -7,7 +7,7 @@ import Wrapper from "../shared/components/Wrapper";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../shared/utils/auth";
 import "../shared/UI/css/dashboard.css";
-import DashboardHeader from "../shared/components/dashboardHeader";
+import DashboardHeader from "../shared/components/DashboardHeader";
 
 const Dashboard = ({ setUserDetails, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(true);
