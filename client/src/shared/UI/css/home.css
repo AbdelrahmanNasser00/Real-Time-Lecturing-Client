@@ -152,7 +152,7 @@
 
     .container-home {
         top: 10px;
-
+        flex-direction: column-reverse;
     }
 
 
