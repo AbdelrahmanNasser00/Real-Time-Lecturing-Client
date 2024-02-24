@@ -6,12 +6,14 @@ import { useParams } from "react-router-dom";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../shared/utils/auth";
 import "../shared/UI/css/SubjectPage.css";
-import RegularHeaderAndSidebar from "./Lecture/RegularHeaderAndSidebar";
+import SideBar from "./Lecture/SideBar";
+import MobileSidebar from "./Lecture/MobileSidebar";
+import SubjectHeader from "../shared/components/SubjectHeader";
 
 const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
-  console.log(subjects.subjects);
   const isUserInRoom = room.isUserInRoom;
+  const [mobileSidebarWidth, setMobileSidebarWidth] = useState(0);
 
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
@@ -31,7 +33,7 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   const { id } = useParams();
 
   const subject = subjects.subjects.find((subject) => subject.code === id);
-  console.log("subject ", subject);
+
   if (!subjects.subjects.length) {
     return <Spinner />;
   }
@@ -40,7 +42,23 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   }
 
   return (
-    <RegularHeaderAndSidebar isUserInRoom={isUserInRoom} subject={subject} />
+    <>
+      <SubjectHeader
+        isUserInRoom={isUserInRoom}
+        subject={subject}
+        setMobileSidebarWidth={setMobileSidebarWidth}
+      />
+      <div className="desktop-Sidebar">
+        <SideBar isUserInRoom={isUserInRoom} subject={subject} />
+      </div>
+      <div className="mobile-Sidebar">
+        <MobileSidebar
+          isUserInRoom={isUserInRoom}
+          subject={subject}
+          width={mobileSidebarWidth}
+        />
+      </div>
+    </>
   );
 };
 

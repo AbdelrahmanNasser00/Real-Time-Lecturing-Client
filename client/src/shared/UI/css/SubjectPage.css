@@ -1,22 +1,29 @@
-.menu-item {
-    padding-top: 10px;
-    font-size: 13px;
-    font-weight: 400;
+/*mobile view */
+@media (max-width: 767px) {
+    .desktop-Sidebar {
+        display: none;
+    }
 
+    .mobile-Sidebar {
+        display: block;
+    }
+
+    .css-ewdv3l li a {
+        flex-direction: column;
+    }
+
+    .css-ewdv3l li a span {
+        margin-right: 0px;
+    }
 }
 
+/* non-mobile view */
+@media (min-width: 768px) {
+    .desktop-Sidebar {
+        display: block;
+    }
 
-.menu-item:active {}
-
-.Sidebar {
-    background-color: white;
-    border: 1px solid gray;
-}
-
-.css-dip3t8 {
-    background-color: white;
-}
-
-.Sidebar h4 {
-    color: rgb(0, 152, 229);
+    .mobile-Sidebar {
+        display: none;
+    }
 }

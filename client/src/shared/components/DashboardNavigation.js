@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../UI/css/header.css";
 import { logout } from "../utils/auth";
@@ -19,11 +19,6 @@ const DashboardNavigation = ({ isClicked, setIsClicked }) => {
   return (
     <div className="navigation">
       <ul className={isClicked ? "navUl-active" : "navUl"}>
-        <li>
-          <Link className="a" to="/">
-            Home
-          </Link>
-        </li>
         <li>
           <Link className="a" to="/" onClick={logout}>
             Logout

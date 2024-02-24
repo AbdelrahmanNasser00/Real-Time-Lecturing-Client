@@ -1,5 +1,4 @@
 import axios from "axios";
-import { logout } from "./shared/utils/auth";
 
 // const apiClient = axios.create({
 //   baseURL: "https://realtime-lecturing-api.onrender.com/api",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/system";
 import ResizeRoomButton from "./ResizeRoomButton";
 import VideosContainer from "./VideosContainer";
@@ -19,7 +19,7 @@ const fullScreenRoomStyle = {
 };
 
 const minimizedRoomStyle = {
-  width: "87%",
+  width: "100%",
   height: "calc(100vh - 55px)",
 };
 

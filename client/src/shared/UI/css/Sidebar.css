@@ -1,0 +1,28 @@
+.menu-item {
+    padding-top: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    color: #656565;
+}
+
+
+.menu-item:active {}
+
+.Sidebar {
+    background-color: white;
+    border-right: 1px solid gray;
+}
+
+.css-dip3t8 {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Sidebar h4 {
+    /* color: rgb(0, 152, 229); */
+    color: #5c27fe;
+}
