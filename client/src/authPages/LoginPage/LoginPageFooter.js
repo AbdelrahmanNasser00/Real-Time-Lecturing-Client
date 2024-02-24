@@ -22,12 +22,11 @@ const LoginPageFooter = ({ handleLogin, isFormValid }) => {
   return (
     <>
       <Tooltip
-        title={!isFormValid ? getFormNotValidMessage() : getFormValidMessage()}
-      >
+        title={!isFormValid ? getFormNotValidMessage() : getFormValidMessage()}>
         <div>
           <CustomPrimaryButton
             label="Log in"
-            additionalStyles={{ marginTop: "30px" }}
+            additionalStyles={{ marginTop: "15px" }}
             disabled={!isFormValid}
             onClick={handleLogin}
           />
