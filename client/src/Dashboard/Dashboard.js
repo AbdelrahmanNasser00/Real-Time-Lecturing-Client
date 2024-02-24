@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../shared/components/Spinner";
-import SubjectSideBar from "./SubjectsSideBar/SubjectsSideBar";
+import SubjectSideBar from "./SubjectsContainer/SubjectsContainer";
 import { connect } from "react-redux";
 import { getActions } from "../store/actions/authActions";
-import Wrapper from "../shared/components/Wrapper";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../shared/utils/auth";
 import "../shared/UI/css/dashboard.css";

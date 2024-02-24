@@ -29,24 +29,11 @@ export const updateActiveRooms = (data) => {
   // const friends = store.getState().friends.friends;
   const rooms = [];
 
-  const userId = store.getState().auth.userDetails?._id;
+  // const userId = store.getState().auth.userDetails?._id;
   const userName = store.getState().auth.userDetails?.username;
 
   activeRooms.forEach((room) => {
     rooms.push({ ...room, creatorUsername: userName });
-
-    // const isRoomCreatedByMe = room.roomCreator.userId === userId;
-
-    // if (isRoomCreatedByMe) {
-    //   rooms.push({ ...room, creatorUsername: ".." });
-    // }
-    // else {
-    //   friends.forEach((f) => {
-    //     if (f.id === room.roomCreator.userId) {
-    //       rooms.push({ ...room, creatorUsername: f.username });
-    //     }
-    //   });
-    // }
   });
 
   store.dispatch(setActiveRooms(rooms));

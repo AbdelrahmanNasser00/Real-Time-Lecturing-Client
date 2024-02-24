@@ -4,9 +4,9 @@ import LoginPage from "./authPages/LoginPage/LoginPage";
 import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import Dashboard from "./Dashboard/Dashboard";
 import AlertNotification from "./shared/components/AlertNotification";
-import Subject from "./Dashboard/Subject";
+import Subject from "./Subject/Subject";
 import HomePage from "./HomePage/HomePage";
-import Lecture from "./Dashboard/Lecture/Lecture";
+import Lecture from "./Subject/Lecture/Lecture";
 import "./App.css";
 
 function App() {
