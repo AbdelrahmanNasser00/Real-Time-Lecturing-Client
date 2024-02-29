@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/system";
 import ResizeRoomButton from "./ResizeRoomButton";
 import VideosContainer from "./VideosContainer";
@@ -23,16 +23,12 @@ const minimizedRoomStyle = {
   height: "calc(100vh - 55px)",
 };
 
-const Room = () => {
+const Room = ({ handleFullScreen, isFullScreen }) => {
   const [isRoomMinimized, setIsRoomMinimized] = useState(true);
-  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const roomResizeHandler = () => {
-    setIsRoomMinimized(!isRoomMinimized);
-  };
-  const handleFullScreen = () => {
-    setIsFullScreen(!isFullScreen);
-  };
+  useEffect(() => {
+    setIsRoomMinimized(!isFullScreen);
+  }, [isFullScreen]);
 
   return (
     <MainContainer
@@ -42,8 +38,7 @@ const Room = () => {
       <RoomButtons />
       <ResizeRoomButton
         isRoomMinimized={isRoomMinimized}
-        handleRoomResize={roomResizeHandler}
-        onclick={handleFullScreen}
+        handleFullScreen={handleFullScreen}
       />
     </MainContainer>
   );

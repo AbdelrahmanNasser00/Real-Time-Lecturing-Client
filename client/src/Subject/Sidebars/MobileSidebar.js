@@ -12,12 +12,16 @@ import Lecture from "../Lecture/Lecture";
 import { Link } from "react-router-dom";
 import { logout } from "../../shared/utils/auth";
 
-const MobileSidebar = ({ isUserInRoom, subject, width }) => {
-  const [selectMenuItem, setSelectMenuItem] = useState("dashboard");
+const MobileSidebar = ({ isUserInRoom, subject, width, handleFullScreen }) => {
+  const [selectMenuItem, setSelectMenuItem] = useState("lecture");
   const [isOpen, setIsOpen] = useState(true);
 
   const components = {
-    lecture: isUserInRoom ? <Room /> : <Lecture subjectId={subject.id} />,
+    lecture: isUserInRoom ? (
+      <Room handleFullScreen={handleFullScreen} />
+    ) : (
+      <Lecture subjectId={subject.id} />
+    ),
     chat: null,
     files: null,
     calendar: null,
@@ -43,7 +47,7 @@ const MobileSidebar = ({ isUserInRoom, subject, width }) => {
           <h4
             style={{ textAlign: "center", cursor: "pointer", color: "#5c27fe" }}
             onClick={handleToggleSidebar}>
-            Data Structure ({subject.code})
+            {subject.name} ({subject.code})
           </h4>
           <Menu>
             <MenuItem

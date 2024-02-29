@@ -9,6 +9,7 @@ const initState = {
   remoteStreams: [],
   screenSharingStream: null,
   isScreenSharingActive: false,
+  isFullScreen: false,
 };
 
 const reducer = (state = initState, action) => {
@@ -45,6 +46,11 @@ const reducer = (state = initState, action) => {
         ...state,
         screenSharingStream: action.screenSharingStream,
         isScreenSharingActive: action.isScreenSharingActive,
+      };
+    case roomActions.TOGGLE_FULLSCREEEN:
+      return {
+        ...state,
+        isFullScreen: !state.isFullScreen,
       };
 
     default:

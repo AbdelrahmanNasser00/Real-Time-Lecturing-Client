@@ -18,7 +18,11 @@ const HomePage = () => {
       <Header />
       <div className="container-home">
         <div className="home-img-container">
-          <img src={BackGroundImage} alt="home pic" className="home-img"></img>
+          <img
+            src={BackGroundImage}
+            alt="home pic"
+            className="home-img"
+            loading="lazy"></img>
         </div>
         <div className="text">
           <h2 className="home-h2">

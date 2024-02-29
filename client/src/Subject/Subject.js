@@ -9,11 +9,13 @@ import "../shared/UI/css/SubjectPage.css";
 import SubjectHeader from "../shared/components/SubjectHeader";
 import MobileSidebar from "./Sidebars/MobileSidebar";
 import SideBar from "./Sidebars/SideBar";
+import Room from "../Dashboard/Room/Room";
 
 const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
   const isUserInRoom = room.isUserInRoom;
   const [mobileSidebarWidth, setMobileSidebarWidth] = useState(0);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
@@ -34,6 +36,10 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
 
   const subject = subjects.subjects.find((subject) => subject.code === id);
 
+  const handleFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
+  };
+
   if (!subjects.subjects.length) {
     return <Spinner />;
   }
@@ -43,21 +49,34 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
 
   return (
     <>
-      <SubjectHeader
-        isUserInRoom={isUserInRoom}
-        subject={subject}
-        setMobileSidebarWidth={setMobileSidebarWidth}
-      />
-      <div className="desktop-Sidebar">
-        <SideBar isUserInRoom={isUserInRoom} subject={subject} />
-      </div>
-      <div className="mobile-Sidebar">
-        <MobileSidebar
-          isUserInRoom={isUserInRoom}
-          subject={subject}
-          width={mobileSidebarWidth}
-        />
-      </div>
+      {!isFullScreen && (
+        <>
+          <SubjectHeader
+            isUserInRoom={isUserInRoom}
+            subject={subject}
+            setMobileSidebarWidth={setMobileSidebarWidth}
+          />
+          <div className="desktop-Sidebar">
+            <SideBar
+              isUserInRoom={isUserInRoom}
+              subject={subject}
+              handleFullScreen={handleFullScreen}
+              isFullScreen={isFullScreen}
+            />
+          </div>
+          <div className="mobile-Sidebar">
+            <MobileSidebar
+              isUserInRoom={isUserInRoom}
+              subject={subject}
+              handleFullScreen={handleFullScreen}
+              width={mobileSidebarWidth}
+            />
+          </div>
+        </>
+      )}
+      {isFullScreen && (
+        <Room handleFullScreen={handleFullScreen} isFullScreen={isFullScreen} />
+      )}
     </>
   );
 };

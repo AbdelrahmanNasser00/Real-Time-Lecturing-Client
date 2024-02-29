@@ -5,6 +5,7 @@ export const roomActions = {
   SET_LOCAL_STREAM: "ROOM.SET_LOCAL_STREAM",
   SET_REMOTE_STREAMS: "ROOM.SET_REMOTE_STREAMS",
   SET_SCREEN_SHARE_STREAM: "ROOM.SET_SCREEN_SHARE_STREAM",
+  TOGGLE_FULLSCREEEN: "TOGGLE_FULLSCREEEN",
 };
 
 export const setOpenRoom = (
@@ -61,3 +62,7 @@ export const setScreenSharingStream = (stream) => {
     screenSharingStream: stream || null,
   };
 };
+
+export const toggleFullScreen = () => ({
+  type: roomActions.TOGGLE_FULLSCREEEN,
+});

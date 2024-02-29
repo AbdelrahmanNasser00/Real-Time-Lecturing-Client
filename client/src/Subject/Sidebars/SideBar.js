@@ -13,12 +13,16 @@ import { Link } from "react-router-dom";
 import { logout } from "../../shared/utils/auth";
 import "../../shared/UI/css/Sidebar.css";
 
-const SideBar = ({ isUserInRoom, subject }) => {
-  const [selectMenuItem, setSelectMenuItem] = useState("dashboard");
+const SideBar = ({ isUserInRoom, subject, handleFullScreen, isFullScreen }) => {
+  const [selectMenuItem, setSelectMenuItem] = useState("lecture");
   const [isOpen, setIsOpen] = useState(true);
 
   const components = {
-    lecture: isUserInRoom ? <Room /> : <Lecture subjectId={subject.id} />,
+    lecture: isUserInRoom ? (
+      <Room handleFullScreen={handleFullScreen} isFullScreen={isFullScreen} />
+    ) : (
+      <Lecture subjectId={subject.id} />
+    ),
     chat: null,
     files: null,
     calendar: null,
