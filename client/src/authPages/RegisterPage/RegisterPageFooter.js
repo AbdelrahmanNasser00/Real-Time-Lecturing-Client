@@ -2,6 +2,7 @@ import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
 import RedirectInfo from "../../shared/components/RedirectInfo";
 import { useHistory } from "react-router-dom";
 import { Tooltip } from "@mui/material";
+import { useEffect } from "react";
 
 const getFormNotValidMessage = () => {
   return "Username should contains between 3 and 12 characters and password should contains between 6 and 12 character. Also correct e-mail address should provided";
@@ -18,6 +19,19 @@ const RegisterPageFooter = ({
   setShowValidationCode,
 }) => {
   const history = useHistory();
+
+  useEffect(() => {
+    const handlekeyPress = (e) => {
+      if (e.key === "Enter" && isFormValid) {
+        handleClickRigisterButton();
+      }
+    };
+    document.addEventListener("keydown", handlekeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handlekeyPress);
+    };
+  });
 
   const handleClickRigisterButton = () => {
     setShowValidationCode(!showValidationCode);
@@ -36,8 +50,7 @@ const RegisterPageFooter = ({
         <Tooltip
           title={
             !isFormValid ? getFormNotValidMessage() : getFormValidMessage()
-          }
-        >
+          }>
           <div>
             <CustomPrimaryButton
               label="Register"

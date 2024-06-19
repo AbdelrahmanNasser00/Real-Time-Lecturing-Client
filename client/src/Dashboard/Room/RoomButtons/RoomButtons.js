@@ -1,11 +1,11 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { styled } from "@mui/system";
 import CameraButton from "./CameraButton";
 import MicButton from "./MicButton";
 import CloseRoomButton from "./CloseRoomButton";
 import ScreenShareButton from "./ScreenShareButton";
-import { connect } from "react-redux";
-import { getActions } from "../../../store/actions/roomActions";
+import { setLocalStreamId } from "../../../store/roomSlice";
 
 const MainContainer = styled("div")({
   height: "15%",
@@ -19,29 +19,31 @@ const MainContainer = styled("div")({
   borderRadius: "0px",
 });
 
-const RoomButtons = (props) => {
-  const { localStream, isUserJoinedWithOnlyAudio } = props;
+const RoomButtons = () => {
+  const dispatch = useDispatch();
+  const { localStream, isUserJoinedWithOnlyAudio } = useSelector(
+    (state) => state.room
+  );
+
+  const handleLocalStreamChange = (stream) => {
+    dispatch(setLocalStreamId(stream.id));
+  };
 
   return (
     <MainContainer>
-      {!isUserJoinedWithOnlyAudio && <ScreenShareButton {...props} />}
+      {!isUserJoinedWithOnlyAudio && (
+        <ScreenShareButton onChange={handleLocalStreamChange} />
+      )}
       <MicButton localStream={localStream} />
       <CloseRoomButton />
-      {!isUserJoinedWithOnlyAudio && <CameraButton localStream={localStream} />}
+      {!isUserJoinedWithOnlyAudio && (
+        <CameraButton
+          localStream={localStream}
+          onChange={handleLocalStreamChange}
+        />
+      )}
     </MainContainer>
   );
 };
 
-const mapStoreStateToProps = ({ room }) => {
-  return {
-    ...room,
-  };
-};
-
-const mapActionsToProps = (dispatch) => {
-  return {
-    ...getActions(dispatch),
-  };
-};
-
-export default connect(mapStoreStateToProps, mapActionsToProps)(RoomButtons);
+export default RoomButtons;

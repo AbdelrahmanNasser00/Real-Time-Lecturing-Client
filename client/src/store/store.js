@@ -1,23 +1,20 @@
-import { composeWithDevTools } from "redux-devtools-extension";
-import { combineReducers, createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import alertSlice from "./alertSlice";
+import authSlice from "./authSlice";
+import socketSlice from "./socketSlice";
+import roomSlice from "./roomSlice";
+import subjectsSlice from "./subjectsSlice";
+import chatSlice from "./chatSlice";
 
-import authReducer from "./reducers/authReducer";
-import alertReducer from "./reducers/alertReducer";
-import roomReducer from "./reducers/roomReducer";
-import subjectsReducer from "./reducers/subjectsReducer";
-import socketReducer from "./reducers/socketReducer";
-const rootReducer = combineReducers({
-  auth: authReducer,
-  alert: alertReducer,
-  room: roomReducer,
-  subjects: subjectsReducer,
-  socket: socketReducer,
+const store = configureStore({
+  reducer: {
+    auth: authSlice,
+    alert: alertSlice,
+    socket: socketSlice,
+    room: roomSlice,
+    subjects: subjectsSlice,
+    chat: chatSlice,
+  },
 });
-
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
 
 export default store;

@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import CreateRoomButton from "./CreateRoomButton";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import ActiveRoomButton from "./ActiveRoomButton";
 
 const MainContainer = styled("div")({
@@ -13,7 +13,9 @@ const MainContainer = styled("div")({
   backgroundColor: "transparent",
 });
 
-const Lecture = ({ activeRooms, isUserInRoom, subjectId }) => {
+const Lecture = ({ subjectId }) => {
+  const activeRooms = useSelector((state) => state.room.activeRooms);
+  const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
   return (
     <MainContainer>
       {activeRooms.length === 0 ? (
@@ -22,7 +24,7 @@ const Lecture = ({ activeRooms, isUserInRoom, subjectId }) => {
       {activeRooms.map((room) => (
         <ActiveRoomButton
           roomId={room.roomId}
-          creatorUsername={room.creatorUsername}
+          creatorUsername={room.roomCreator.userId}
           amountOfParticipants={room.participants.length}
           key={room.roomId}
           isUserInRoom={isUserInRoom}
@@ -32,10 +34,4 @@ const Lecture = ({ activeRooms, isUserInRoom, subjectId }) => {
   );
 };
 
-const mapStoreStateToProps = ({ room }) => {
-  return {
-    ...room,
-  };
-};
-
-export default connect(mapStoreStateToProps)(Lecture);
+export default Lecture;

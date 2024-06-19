@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
 import AuthBox from "../../shared/components/AuthBox";
 import RegisterPageInputs from "./RegisterPageInputs";
 import RegisterPageFooter from "./RegisterPageFooter";
 import { validateRegisterForm } from "../../shared/utils/validators";
-import { connect } from "react-redux";
-import { getActions } from "../../store/actions/authActions";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import VerificationPage from "./VerificationPage";
 import Header from "../../shared/components/Header";
 import RegisterPageHeader from "./RegisterPageHeader";
 import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
+import { register, verify } from "../../store/authSlice";
 
-const RegisterPage = ({ register, verify }) => {
+const RegisterPage = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const userDetails = localStorage.getItem("user");
 
   if (userDetails) {
@@ -28,25 +28,23 @@ const RegisterPage = ({ register, verify }) => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const handleRegister = () => {
-    console.log("handle register called");
     const userDetails = {
       mail,
       password,
       username,
     };
 
-    register(userDetails);
+    dispatch(register(userDetails));
   };
 
   const handleVerify = async () => {
-    console.log("handle verify called");
-
     const userDetailsString = localStorage.getItem("unverifiedUser");
     const userDetails = JSON.parse(userDetailsString);
     userDetails.verificationCode = verificationCode;
+
     localStorage.setItem("unverifiedUser", JSON.stringify(userDetails));
 
-    verify(userDetails, history);
+    dispatch(verify({ userDetails, history }));
   };
   useEffect(() => {
     setIsFormValid(
@@ -99,10 +97,4 @@ const RegisterPage = ({ register, verify }) => {
   );
 };
 
-const mapActionsToProps = (dispatch) => {
-  return {
-    ...getActions(dispatch),
-  };
-};
-
-export default connect(null, mapActionsToProps)(RegisterPage);
+export default RegisterPage;

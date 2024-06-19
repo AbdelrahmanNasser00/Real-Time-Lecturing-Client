@@ -9,6 +9,7 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import Room from "../../Dashboard/Room/Room";
 import Lecture from "../Lecture/Lecture";
+import Chat from "../Chat/Chat";
 import { Link } from "react-router-dom";
 import { logout } from "../../shared/utils/auth";
 import "../../shared/UI/css/Sidebar.css";
@@ -23,7 +24,7 @@ const SideBar = ({ isUserInRoom, subject, handleFullScreen, isFullScreen }) => {
     ) : (
       <Lecture subjectId={subject.id} />
     ),
-    chat: null,
+    chat: <Chat />,
     files: null,
     calendar: null,
   };

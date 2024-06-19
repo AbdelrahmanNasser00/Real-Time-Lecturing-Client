@@ -1,0 +1,90 @@
+.accodions-container {
+    width: 100%;
+}
+
+.accordion {
+    width: 100%;
+    margin: 5px;
+    background-color: #e9eef8;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.accordion .organization-name {
+    position: relative;
+    padding: 10px 15px;
+    cursor: pointer;
+    height: 60px;
+    align-items: center;
+    display: flex;
+}
+
+.accordion .content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--accordion-color);
+    max-height: 245px;
+    border-top: 2px solid white;
+    transition: 0.3s ease;
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0px 15px;
+    /* padding-bottom: 15px; */
+}
+
+.accordion .content span {
+    margin: 15px 20px 0px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+
+.accordion .organization-name::before {
+    content: '\f078';
+    font-family: fontawesome;
+    font-weight: 100;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #5a5a5a;
+    transition: 0.3s;
+}
+
+.accordion .organization-name.active::before {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.accordion .content.active {
+    max-height: 245px;
+    padding: 10px 15px;
+    padding-bottom: 15px;
+}
+
+/* Create Organization */
+.create-organization input {
+    padding: 10px 15px;
+    margin: 5px 0px;
+    border: none;
+    background-color: #eeeeee;
+    height: 50px;
+    width: 100%;
+    border-radius: 30px;
+
+}
+
+.create-organization button {
+    border: none;
+    background-color: var(--main-color);
+    color: black;
+    height: 50px;
+    width: 50%;
+    border-radius: 30px;
+    cursor: pointer;
+}

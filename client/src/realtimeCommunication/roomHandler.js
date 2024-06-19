@@ -1,72 +1,73 @@
-import store from "../store/store";
 import {
   setOpenRoom,
   setRoomDetails,
   setActiveRooms,
-  setLocalStream,
+  setLocalStreamId,
   setRemoteStreams,
   setScreenSharingStream,
-} from "../store/actions/roomActions";
+} from "../store/roomSlice";
 import * as socketConnection from "./socketConnection";
 import * as webRTCHandler from "./webRTCHandler";
 
-export const createNewRoom = (subjectId) => {
+export const createNewRoom = (subjectId) => async (dispatch) => {
   const successCallBackFunction = () => {
-    store.dispatch(setOpenRoom(true, true));
-    socketConnection.createNewRoom({ subjectId });
+    dispatch(setOpenRoom(true, true));
+    // dispatch(socketConnection.createNewRoom(subjectId));
+    socketConnection.createNewRoom(subjectId);
   };
-  webRTCHandler.getLocalStreamPreview(successCallBackFunction);
+
+  await dispatch(webRTCHandler.getLocalStreamPreview(successCallBackFunction));
 };
 
-export const newRoomCreated = (data) => {
+export const newRoomCreated = (data) => async (dispatch) => {
   const { roomDetails } = data;
-  store.dispatch(setRoomDetails(roomDetails));
+  dispatch(setRoomDetails(roomDetails));
 };
 
-export const updateActiveRooms = (data) => {
+export const updateActiveRooms = (data) => (dispatch, getState) => {
   const { activeRooms } = data;
 
   // const friends = store.getState().friends.friends;
   const rooms = [];
 
   // const userId = store.getState().auth.userDetails?._id;
-  const userName = store.getState().auth.userDetails?.username;
+  const userName = getState().auth.userDetails?.username;
 
   activeRooms.forEach((room) => {
     rooms.push({ ...room, creatorUsername: userName });
   });
 
-  store.dispatch(setActiveRooms(rooms));
+  dispatch(setActiveRooms(rooms));
 };
 
-export const joinRoom = (roomId) => {
+export const joinRoom = (roomId) => async (dispatch) => {
   const successCallBackFunction = () => {
-    store.dispatch(setRoomDetails({ roomId }));
-    store.dispatch(setOpenRoom(false, true));
+    dispatch(setRoomDetails({ roomId }));
+    dispatch(setOpenRoom(false, true));
     socketConnection.joinRoom({ roomId });
   };
-  webRTCHandler.getLocalStreamPreview(successCallBackFunction);
+  await dispatch(webRTCHandler.getLocalStreamPreview(successCallBackFunction));
 };
 
-export const leaveRoom = () => {
-  const roomId = store.getState().room.roomDetails.roomId;
+export const leaveRoom = () => (dispatch, getState) => {
+  const roomId = getState().room.roomDetails.roomId;
 
-  const localStream = store.getState().room.localStream;
+  const localStream = getState().room.localStream;
   if (localStream) {
     localStream.getTracks().forEach((track) => track.stop());
-    store.dispatch(setLocalStream(null));
+    dispatch(setLocalStreamId(null));
   }
 
-  const screenSharingStream = store.getState().room.screenSharingStream;
+  const screenSharingStream = getState().room.screenSharingStream;
   if (screenSharingStream) {
     screenSharingStream.getTracks().forEach((track) => track.stop());
-    store.dispatch(setScreenSharingStream(null));
+    setScreenSharingStream(null);
   }
 
-  store.dispatch(setRemoteStreams([]));
+  dispatch(setRemoteStreams([]));
   webRTCHandler.closeAllConnections();
 
   socketConnection.leaveRoom({ roomId });
-  store.dispatch(setRoomDetails(null));
-  store.dispatch(setOpenRoom(false, false));
+  dispatch(setRoomDetails(null));
+  dispatch(setOpenRoom(false, false));
 };

@@ -1,55 +1,53 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../shared/components/Spinner";
-import SubjectSideBar from "./SubjectsContainer/SubjectsContainer";
-import { connect } from "react-redux";
-import { getActions } from "../store/actions/authActions";
+import Lectures from "./Lectures/Lectures";
+import Organizations from "./Organizations/Organizations";
+import Subjects from "./Subjects/Subjects";
+import { useDispatch, useSelector } from "react-redux";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
+import { setUserDetails } from "../store/authSlice";
 import { logout } from "../shared/utils/auth";
 import "../shared/UI/css/dashboard.css";
 import DashboardHeader from "../shared/components/DashboardHeader";
+import { styled } from "@mui/system";
 
-const Dashboard = ({ setUserDetails, socketOpen }) => {
+const Wrapper = styled("div")({
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr",
+  height: "100vh",
+});
+
+const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
-
+  const dispatch = useDispatch();
+  const socketOpen = useSelector((state) => state.socket.socketOpen);
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
     if (!userDetails) {
       logout();
     } else {
       const parsedUserDetails = JSON.parse(userDetails);
-      setUserDetails(parsedUserDetails);
+      dispatch(setUserDetails(parsedUserDetails));
       if (!socketOpen) {
-        connectWithSocketServer(parsedUserDetails);
+        connectWithSocketServer(parsedUserDetails, dispatch);
       }
       setIsLoading(false);
     }
-  }, [setUserDetails, socketOpen]);
+  }, [dispatch, socketOpen]);
 
   if (isLoading) {
     return <Spinner />;
   }
   return (
     <>
-      <div className="header-container">
-        <DashboardHeader />
-      </div>
-      <div className="dashboard-container">
-        <SubjectSideBar />
-      </div>
+      <DashboardHeader />
+      <Wrapper>
+        <Subjects />
+        <Lectures />
+        <Organizations />
+      </Wrapper>
     </>
   );
 };
 
-const mapActionsToProps = (dispatch) => {
-  return {
-    ...getActions(dispatch),
-  };
-};
-
-const mapStoreStateToProps = ({ socket }) => {
-  return {
-    socketOpen: socket.socketOpen,
-  };
-};
-
-export default connect(mapStoreStateToProps, mapActionsToProps)(Dashboard);
+export default Dashboard;

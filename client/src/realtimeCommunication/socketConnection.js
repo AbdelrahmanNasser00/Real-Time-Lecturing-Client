@@ -1,12 +1,13 @@
 import io from "socket.io-client";
-import { setSubjects } from "../store/actions/subjectsActions";
-import store from "../store/store";
 import * as roomHandler from "./roomHandler";
 import * as webRTCHandler from "./webRTCHandler";
-import { socketOpen, socketClose } from "../store/actions/socketActions";
+import { socketOpen, socketClose } from "../store/socketSlice";
+import { setSubjects } from "../store/subjectsSlice";
+import { setMessages } from "../store/chatSlice";
+
 let socket = null;
 
-export const connectWithSocketServer = (userDetails) => {
+export const connectWithSocketServer = (userDetails, dispatch) => {
   const jwtToken = userDetails.token;
   console.log(`jwtToken ${jwtToken}`);
   // socket = io("https://realtime-lecturing-api.onrender.com", {
@@ -22,48 +23,55 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("connect", () => {
     console.log("succesfully connected with socket.io server");
-    console.log(socket.id);
-    store.dispatch(socketOpen());
+    dispatch(socketOpen());
   });
 
   socket.on("subjects-list", (data) => {
-    console.log("subjects came");
     const { subjects } = data;
-    store.dispatch(setSubjects(subjects));
+    dispatch(setSubjects(subjects));
   });
 
   socket.on("create-room", (data) => {
-    console.log("create-room event came");
-    roomHandler.newRoomCreated(data);
+    console.log("Room details: ", data);
+    dispatch(roomHandler.newRoomCreated(data));
   });
 
   socket.on("active-rooms", (data) => {
-    console.log("acitve room event came", data);
-    roomHandler.updateActiveRooms(data);
+    dispatch(roomHandler.updateActiveRooms(data));
   });
 
   socket.on("conn-prepare", (data) => {
     const { connUserSocketId } = data;
-    webRTCHandler.prepareNewPeerConnection(connUserSocketId, false);
+    dispatch(webRTCHandler.prepareNewPeerConnection(connUserSocketId, false));
     socket.emit("initialze-connection", { connUserSocketId: connUserSocketId });
   });
 
   socket.on("initialze-connection", (data) => {
     const { connUserSocketId } = data;
-    webRTCHandler.prepareNewPeerConnection(connUserSocketId, true);
+    dispatch(webRTCHandler.prepareNewPeerConnection(connUserSocketId, true));
   });
 
   socket.on("conn-signal", (data) => {
-    webRTCHandler.handleSignalingData(data);
+    dispatch(webRTCHandler.handleSignalingData(data));
   });
 
   socket.on("room-participant-left", (data) => {
     console.log("user left room");
-    webRTCHandler.handleParticipantLeftRoom(data);
+    dispatch(webRTCHandler.handleParticipantLeftRoom(data));
+  });
+
+  socket.on("receive-message", (data) => {
+    dispatch(setMessages(data));
+  });
+
+  socket.on("load-messages", (messages) => {
+    messages.forEach((message) => {
+      dispatch(setMessages(message));
+    });
   });
 
   socket.on("disconnect", () => {
-    store.dispatch(socketClose());
+    dispatch(socketClose());
   });
 };
 
@@ -81,4 +89,9 @@ export const leaveRoom = (data) => {
 
 export const signalPeerData = (data) => {
   socket.emit("conn-signal", data);
+};
+
+export const sendMessage = (data) => {
+  console.log(data);
+  socket.emit("send-message", data);
 };

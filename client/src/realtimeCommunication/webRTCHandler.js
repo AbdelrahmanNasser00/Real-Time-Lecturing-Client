@@ -1,5 +1,4 @@
-import store from "../store/store";
-import { setLocalStream, setRemoteStreams } from "../store/actions/roomActions";
+import { setLocalStreamId, setRemoteStreams } from "../store/roomSlice";
 import Peer from "simple-peer";
 import * as socketConnection from "./socketConnection";
 
@@ -20,7 +19,7 @@ const getConfiguration = () => {
   }
 };
 
-export const getLocalStreamPreview = (callbackFunc) => {
+export const getLocalStreamPreview = (callbackFunc) => (dispatch) => {
   const constraints = {
     video: true,
     audio: true,
@@ -29,50 +28,51 @@ export const getLocalStreamPreview = (callbackFunc) => {
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
-      store.dispatch(setLocalStream(stream));
+      dispatch(setLocalStreamId(stream.id));
       callbackFunc();
     })
     .catch((err) => {
-      console.log(err);
       console.log("Cannot get an access to local stream");
+      console.log(err);
     });
 };
 
 let peers = {};
 
-export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
-  const localStream = store.getState().room.localStream;
+export const prepareNewPeerConnection =
+  (connUserSocketId, isInitiator) => (dispatch, getState) => {
+    const localStream = getState().room.localStream;
 
-  if (isInitiator) {
-    console.log("preparing new peer connection as initiator");
-  } else {
-    console.log("preparing new peer connection as not initiator");
-  }
+    if (isInitiator) {
+      console.log("preparing new peer connection as initiator");
+    } else {
+      console.log("preparing new peer connection as not initiator");
+    }
 
-  peers[connUserSocketId] = new Peer({
-    initiator: isInitiator,
-    config: getConfiguration(),
-    stream: localStream,
-  });
+    peers[connUserSocketId] = new Peer({
+      initiator: isInitiator,
+      config: getConfiguration(),
+      stream: localStream,
+    });
 
-  peers[connUserSocketId].on("signal", (data) => {
-    const signalData = {
-      signal: data,
-      connUserSocketId: connUserSocketId,
-    };
+    peers[connUserSocketId].on("signal", (data) => {
+      const signalData = {
+        signal: data,
+        connUserSocketId: connUserSocketId,
+      };
 
-    socketConnection.signalPeerData(signalData);
-  });
+      socketConnection.signalPeerData(signalData);
+    });
 
-  peers[connUserSocketId].on("stream", (remoteStream) => {
-    // TODO
-    // add new remote stream to our server store
-    console.log("remote stream came from other user");
-    console.log("direct connection has been established");
-    remoteStream.connUserSocketId = connUserSocketId;
-    addNewRemoteStream(remoteStream);
-  });
-};
+    peers[connUserSocketId].on("stream", (remoteStream) => {
+      // TODO
+      // add new remote stream to our server store
+      console.log("remote stream came from other user");
+      console.log("direct connection has been established");
+      remoteStream.connUserSocketId = connUserSocketId;
+      dispatch(addNewRemoteStream(remoteStream));
+    });
+  };
 
 export const handleSignalingData = (data) => {
   const { connUserSocketId, signal } = data;
@@ -82,11 +82,11 @@ export const handleSignalingData = (data) => {
   }
 };
 
-const addNewRemoteStream = (remoteStream) => {
-  const remoteStreams = store.getState().room.remoteStreams;
+const addNewRemoteStream = (remoteStream) => (dispatch, getState) => {
+  const remoteStreams = getState().room.remoteStreams;
   const newRemoteStreams = [...remoteStreams, remoteStream];
 
-  store.dispatch(setRemoteStreams(newRemoteStreams));
+  dispatch(setRemoteStreams(newRemoteStreams));
 };
 
 export const closeAllConnections = () => {
@@ -99,7 +99,7 @@ export const closeAllConnections = () => {
   });
 };
 
-export const handleParticipantLeftRoom = (data) => {
+export const handleParticipantLeftRoom = (data) => (dispatch, getState) => {
   const { connUserSocketId } = data;
 
   if (peers[connUserSocketId]) {
@@ -107,13 +107,13 @@ export const handleParticipantLeftRoom = (data) => {
     delete peers[connUserSocketId];
   }
 
-  const remoteStreams = store.getState().room.remoteStreams;
+  const remoteStreams = getState().room.remoteStreams;
 
   const newRemoteStreams = remoteStreams.filter(
     (remoteStream) => remoteStream.connUserSocketId !== connUserSocketId
   );
 
-  store.dispatch(setRemoteStreams(newRemoteStreams));
+  dispatch(setRemoteStreams(newRemoteStreams));
 };
 
 export const switchOutgoingTracks = (stream) => {
