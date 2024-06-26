@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "../../shared/UI/css/chat.css";
 import * as socketConnection from "../../realtimeCommunication/socketConnection";
+import moment from "moment";
+import { useDropzone } from "react-dropzone";
+import FileUpload from "./FileUpload";
 
 const ChatFooter = () => {
   const [message, setMessage] = useState("");
@@ -18,13 +21,10 @@ const ChatFooter = () => {
       id: uuidv4(),
       username: username,
       message: message,
-      timestamp: new Date().toISOString(),
+      timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
     };
-
-    if (message.trim() !== "") {
-      socketConnection.sendMessage(fullMessage);
-      setMessage("");
-    }
+    socketConnection.sendMessage(fullMessage);
+    setMessage("");
   };
 
   return (
@@ -35,6 +35,7 @@ const ChatFooter = () => {
         value={message}
         onChange={handleMessageChange}
       />
+      <FileUpload />
       <button className="send-btn" onClick={handleSendMessage}>
         Send
       </button>

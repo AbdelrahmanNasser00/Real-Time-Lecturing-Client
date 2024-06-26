@@ -1,11 +1,13 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import * as roomHandler from "../../../realtimeCommunication/roomHandler";
+import { leaveRoom } from "../../../realtimeCommunication/roomHandler";
+import { useDispatch } from "react-redux";
 
 const CloseRoomButton = () => {
+  const dispatch = useDispatch();
   const handleLeaveRoom = () => {
-    roomHandler.leaveRoom();
+    dispatch(leaveRoom());
   };
 
   return (

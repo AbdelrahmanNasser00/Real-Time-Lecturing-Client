@@ -2,21 +2,21 @@ import {
   setOpenRoom,
   setRoomDetails,
   setActiveRooms,
-  setLocalStreamId,
+  setLocalStream,
   setRemoteStreams,
   setScreenSharingStream,
 } from "../store/roomSlice";
 import * as socketConnection from "./socketConnection";
 import * as webRTCHandler from "./webRTCHandler";
+import { getLocalStreamPreview } from "./webRTCHandler";
 
 export const createNewRoom = (subjectId) => async (dispatch) => {
   const successCallBackFunction = () => {
-    dispatch(setOpenRoom(true, true));
-    // dispatch(socketConnection.createNewRoom(subjectId));
+    dispatch(setOpenRoom({ isUserInRoom: true, isUserRoomCreator: false }));
     socketConnection.createNewRoom(subjectId);
   };
 
-  await dispatch(webRTCHandler.getLocalStreamPreview(successCallBackFunction));
+  await dispatch(getLocalStreamPreview(successCallBackFunction));
 };
 
 export const newRoomCreated = (data) => async (dispatch) => {
@@ -43,19 +43,20 @@ export const updateActiveRooms = (data) => (dispatch, getState) => {
 export const joinRoom = (roomId) => async (dispatch) => {
   const successCallBackFunction = () => {
     dispatch(setRoomDetails({ roomId }));
-    dispatch(setOpenRoom(false, true));
-    socketConnection.joinRoom({ roomId });
+    dispatch(setOpenRoom({ isUserInRoom: false, isUserRoomCreator: true }));
+    socketConnection.joinRoom(roomId);
   };
-  await dispatch(webRTCHandler.getLocalStreamPreview(successCallBackFunction));
+
+  await dispatch(getLocalStreamPreview(successCallBackFunction));
 };
 
 export const leaveRoom = () => (dispatch, getState) => {
   const roomId = getState().room.roomDetails.roomId;
-
   const localStream = getState().room.localStream;
+
   if (localStream) {
     localStream.getTracks().forEach((track) => track.stop());
-    dispatch(setLocalStreamId(null));
+    dispatch(setLocalStream(null));
   }
 
   const screenSharingStream = getState().room.screenSharingStream;
@@ -69,5 +70,5 @@ export const leaveRoom = () => (dispatch, getState) => {
 
   socketConnection.leaveRoom({ roomId });
   dispatch(setRoomDetails(null));
-  dispatch(setOpenRoom(false, false));
+  dispatch(setOpenRoom({ isUserInRoom: false, isUserRoomCreator: false }));
 };

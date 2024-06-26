@@ -7,7 +7,7 @@ const roomSlice = createSlice({
     isUserRoomCreator: false,
     roomDetails: null,
     activeRooms: [],
-    localStreamId: null,
+    localStream: null,
     remoteStreams: [],
     screenSharingStream: null,
     isScreenSharingActive: false,
@@ -25,17 +25,15 @@ const roomSlice = createSlice({
     setActiveRooms: (state, action) => {
       state.activeRooms = action.payload;
     },
-    setLocalStreamId: (state, action) => {
-      state.localStreamId = action.payload;
+    setLocalStream: (state, action) => {
+      state.localStream = action.payload;
     },
     setRemoteStreams: (state, action) => {
       state.remoteStreams = action.payload;
     },
-    setScreenShareStream: (state, action) => {
-      state.screenSharingStream = action.payload.screenSharingStream;
-      state.isScreenSharingActive = action.payload.screenSharingStream
-        ? true
-        : false;
+    setScreenSharingStream: (state, action) => {
+      state.screenSharingStream = action.payload;
+      state.isScreenSharingActive = !!action.payload;
     },
     toggleFullScreen: (state) => {
       state.isFullScreen = !state.isFullScreen;
@@ -47,7 +45,7 @@ export const {
   setOpenRoom,
   setRoomDetails,
   setActiveRooms,
-  setLocalStreamId,
+  setLocalStream,
   setRemoteStreams,
   setScreenSharingStream,
   toggleFullScreen,

@@ -1,10 +1,13 @@
 import io from "socket.io-client";
-import * as roomHandler from "./roomHandler";
-import * as webRTCHandler from "./webRTCHandler";
 import { socketOpen, socketClose } from "../store/socketSlice";
 import { setSubjects } from "../store/subjectsSlice";
 import { setMessages } from "../store/chatSlice";
-
+import { newRoomCreated, updateActiveRooms } from "./roomHandler";
+import {
+  handleParticipantLeftRoom,
+  handleSignalingData,
+  prepareNewPeerConnection,
+} from "./webRTCHandler";
 let socket = null;
 
 export const connectWithSocketServer = (userDetails, dispatch) => {
@@ -32,40 +35,40 @@ export const connectWithSocketServer = (userDetails, dispatch) => {
   });
 
   socket.on("create-room", (data) => {
-    console.log("Room details: ", data);
-    dispatch(roomHandler.newRoomCreated(data));
+    console.log("Room details: 55555555555555555555555555555555", data);
+    dispatch(newRoomCreated(data));
   });
 
   socket.on("active-rooms", (data) => {
-    dispatch(roomHandler.updateActiveRooms(data));
+    dispatch(updateActiveRooms(data));
   });
 
   socket.on("conn-prepare", (data) => {
     const { connUserSocketId } = data;
-    dispatch(webRTCHandler.prepareNewPeerConnection(connUserSocketId, false));
+    dispatch(prepareNewPeerConnection(connUserSocketId, false));
     socket.emit("initialze-connection", { connUserSocketId: connUserSocketId });
   });
 
   socket.on("initialze-connection", (data) => {
     const { connUserSocketId } = data;
-    dispatch(webRTCHandler.prepareNewPeerConnection(connUserSocketId, true));
+    dispatch(prepareNewPeerConnection(connUserSocketId, true));
   });
 
   socket.on("conn-signal", (data) => {
-    dispatch(webRTCHandler.handleSignalingData(data));
+    dispatch(handleSignalingData(data));
   });
 
   socket.on("room-participant-left", (data) => {
     console.log("user left room");
-    dispatch(webRTCHandler.handleParticipantLeftRoom(data));
+    dispatch(handleParticipantLeftRoom(data));
   });
 
   socket.on("receive-message", (data) => {
     dispatch(setMessages(data));
   });
 
-  socket.on("load-messages", (messages) => {
-    messages.forEach((message) => {
+  socket.on("load-messages", (data) => {
+    data.forEach((message) => {
       dispatch(setMessages(message));
     });
   });
@@ -92,6 +95,5 @@ export const signalPeerData = (data) => {
 };
 
 export const sendMessage = (data) => {
-  console.log(data);
   socket.emit("send-message", data);
 };

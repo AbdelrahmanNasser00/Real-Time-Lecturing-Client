@@ -20,7 +20,16 @@ const Video = ({ stream, isLocalStream }) => {
 
   useEffect(() => {
     const video = videoRef.current;
-    video.srcObject = stream;
+
+    // Log the stream to check its type
+    console.log("Video component received stream:", stream);
+
+    // Check if the stream is a MediaStream before setting it
+    if (stream instanceof MediaStream) {
+      video.srcObject = stream;
+    } else {
+      console.error("Provided stream is not a MediaStream:", stream);
+    }
 
     video.onloadedmetadata = () => {
       video.play();

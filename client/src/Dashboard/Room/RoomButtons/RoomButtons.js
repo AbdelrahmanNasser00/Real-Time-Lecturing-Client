@@ -5,7 +5,7 @@ import CameraButton from "./CameraButton";
 import MicButton from "./MicButton";
 import CloseRoomButton from "./CloseRoomButton";
 import ScreenShareButton from "./ScreenShareButton";
-import { setLocalStreamId } from "../../../store/roomSlice";
+import { setScreenSharingStream } from "../../../store/roomSlice";
 
 const MainContainer = styled("div")({
   height: "15%",
@@ -21,27 +21,25 @@ const MainContainer = styled("div")({
 
 const RoomButtons = () => {
   const dispatch = useDispatch();
-  const { localStream, isUserJoinedWithOnlyAudio } = useSelector(
-    (state) => state.room
+  const localStream = useSelector((state) => state.room.localStream);
+  const isUserJoinedWithOnlyAudio = useSelector(
+    (state) => state.room.isUserJoinedWithOnlyAudio
   );
 
-  const handleLocalStreamChange = (stream) => {
-    dispatch(setLocalStreamId(stream.id));
+  const handleScreenSharingStream = (stream) => {
+    dispatch(setScreenSharingStream(stream));
   };
 
   return (
     <MainContainer>
       {!isUserJoinedWithOnlyAudio && (
-        <ScreenShareButton onChange={handleLocalStreamChange} />
+        <ScreenShareButton
+          handleScreenSharingStream={handleScreenSharingStream}
+        />
       )}
       <MicButton localStream={localStream} />
       <CloseRoomButton />
-      {!isUserJoinedWithOnlyAudio && (
-        <CameraButton
-          localStream={localStream}
-          onChange={handleLocalStreamChange}
-        />
-      )}
+      {!isUserJoinedWithOnlyAudio && <CameraButton localStream={localStream} />}
     </MainContainer>
   );
 };

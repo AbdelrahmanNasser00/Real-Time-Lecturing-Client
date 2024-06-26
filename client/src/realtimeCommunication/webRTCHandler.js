@@ -1,4 +1,4 @@
-import { setLocalStreamId, setRemoteStreams } from "../store/roomSlice";
+import { setLocalStream, setRemoteStreams } from "../store/roomSlice";
 import Peer from "simple-peer";
 import * as socketConnection from "./socketConnection";
 
@@ -28,7 +28,7 @@ export const getLocalStreamPreview = (callbackFunc) => (dispatch) => {
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
-      dispatch(setLocalStreamId(stream.id));
+      dispatch(setLocalStream(stream));
       callbackFunc();
     })
     .catch((err) => {
@@ -70,7 +70,7 @@ export const prepareNewPeerConnection =
       console.log("remote stream came from other user");
       console.log("direct connection has been established");
       remoteStream.connUserSocketId = connUserSocketId;
-      dispatch(addNewRemoteStream(remoteStream));
+      addNewRemoteStream(remoteStream);
     });
   };
 
