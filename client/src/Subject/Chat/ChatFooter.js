@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import "../../shared/UI/css/chat.css";
 import * as socketConnection from "../../realtimeCommunication/socketConnection";
 import moment from "moment";
-import { useDropzone } from "react-dropzone";
-import FileUpload from "./FileUpload";
 
 const ChatFooter = () => {
   const [message, setMessage] = useState("");
@@ -35,7 +33,6 @@ const ChatFooter = () => {
         value={message}
         onChange={handleMessageChange}
       />
-      <FileUpload />
       <button className="send-btn" onClick={handleSendMessage}>
         Send
       </button>

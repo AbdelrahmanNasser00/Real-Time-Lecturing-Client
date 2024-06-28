@@ -1,8 +1,7 @@
 import React from "react";
 import Tooltip from "@mui/material/Tooltip";
+import * as roomHandler from "../../realtimeCommunication/roomHandler";
 import "../../shared/UI/css/RoomButtons.css";
-import { joinRoom } from "../../realtimeCommunication/roomHandler";
-import { useDispatch } from "react-redux";
 
 const ActiveRoomButton = ({
   creatorUsername,
@@ -10,10 +9,9 @@ const ActiveRoomButton = ({
   amountOfParticipants,
   isUserInRoom,
 }) => {
-  const dispatch = useDispatch();
   const handleJoinActiveRoom = () => {
     if (amountOfParticipants < 4) {
-      dispatch(joinRoom(roomId));
+      roomHandler.joinRoom(roomId);
     }
   };
 

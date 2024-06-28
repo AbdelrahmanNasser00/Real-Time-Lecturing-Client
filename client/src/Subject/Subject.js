@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { getActions } from "../store/actions/authActions";
 import Spinner from "../shared/components/Spinner";
 import { useParams } from "react-router-dom";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
@@ -9,16 +10,12 @@ import SubjectHeader from "../shared/components/SubjectHeader";
 import MobileSidebar from "./Sidebars/MobileSidebar";
 import SideBar from "./Sidebars/SideBar";
 import Room from "../Dashboard/Room/Room";
-import { setUserDetails } from "../store/authSlice";
 
-const Subject = () => {
+const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const isUserInRoom = room.isUserInRoom;
   const [mobileSidebarWidth, setMobileSidebarWidth] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const dispatch = useDispatch();
-  const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
-  const subjects = useSelector((state) => state.subjects.subjects);
-  const socketOpen = useSelector((state) => state.socket.socketOpen);
 
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
@@ -27,21 +24,23 @@ const Subject = () => {
       logout();
     } else {
       const parsedUserDetails = JSON.parse(userDetails);
-      dispatch(setUserDetails(parsedUserDetails));
-      if (!socketOpen && !subjects.length) {
-        connectWithSocketServer(parsedUserDetails, dispatch);
+      setUserDetails(parsedUserDetails);
+      if (!socketOpen && !subjects.subjects.length) {
+        connectWithSocketServer(parsedUserDetails);
       }
       setIsLoading(false);
     }
-  }, [socketOpen, subjects.length, dispatch]);
+  }, [setUserDetails, socketOpen, subjects.subjects.length]);
 
   const { id } = useParams();
-  const subject = subjects.find((subject) => subject.code === id);
+
+  const subject = subjects.subjects.find((subject) => subject.code === id);
+
   const handleFullScreen = () => {
     setIsFullScreen(!isFullScreen);
   };
 
-  if (!subjects.length) {
+  if (!subjects.subjects.length) {
     return <Spinner />;
   }
   if (isLoading) {
@@ -82,4 +81,18 @@ const Subject = () => {
   );
 };
 
-export default Subject;
+const mapStoreStateToProps = ({ room, subjects, socket }) => {
+  return {
+    subjects,
+    room,
+    socketOpen: socket.socketOpen,
+  };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
+export default connect(mapStoreStateToProps, mapActionsToProps)(Subject);

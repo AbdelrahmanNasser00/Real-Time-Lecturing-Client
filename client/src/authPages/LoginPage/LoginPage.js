@@ -5,21 +5,19 @@ import LoginPageHeader from "./LoginPageHeader";
 import LoginPageInputs from "./LoginPageInputs";
 import Header from "../../shared/components/Header";
 import { validateLoginForm } from "../../shared/utils/validators";
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
+import { getActions } from "../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
-import { login } from "../../store/authSlice";
 import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
 import "../../shared/UI/css/login.css";
 
-const LoginPage = () => {
+const LoginPage = ({ login }) => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (userDetails) {
-  //     history.push("/dashboard");
-  //   }
-  // }, [userDetails, history]);
+  const userDetails = localStorage.getItem("user");
 
+  if (userDetails) {
+    history.push("./dashboard");
+  }
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -33,7 +31,8 @@ const LoginPage = () => {
       mail,
       password,
     };
-    dispatch(login({ userDetails, history }));
+
+    login(userDetails, history);
   };
 
   return (
@@ -61,4 +60,10 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+const mapActionsToProps = (dispatch) => {
+  return {
+    ...getActions(dispatch),
+  };
+};
+
+export default connect(null, mapActionsToProps)(LoginPage);

@@ -1,14 +1,10 @@
 import React from "react";
-// import * as roomHandler from "../../realtimeCommunication/roomHandler";
+import * as roomHandler from "../../realtimeCommunication/roomHandler";
 import "../../shared/UI/css/RoomButtons.css";
-import { useDispatch } from "react-redux";
-import { createNewRoom } from "../../realtimeCommunication/roomHandler";
 
 const CreateRoomButton = ({ isUserInRoom, subjectId }) => {
-  const dispatch = useDispatch();
-
   const createNewRoomHandler = () => {
-    dispatch(createNewRoom(subjectId));
+    roomHandler.createNewRoom(subjectId);
   };
 
   return (

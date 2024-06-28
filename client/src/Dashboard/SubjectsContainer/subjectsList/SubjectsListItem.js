@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "../../../shared/UI/css/lectures.css";
+import "../../../shared/UI/css/subjectListItem.css";
 import BackGroundImage from "../../../shared/UI/imgs/student.png";
 
-const LecturesListItem = ({ name, code }) => {
+const SubjectsListItem = ({ name, code }) => {
   const history = useHistory();
 
   const handleSubjectClick = () => {
@@ -61,4 +61,4 @@ const LecturesListItem = ({ name, code }) => {
   );
 };
 
-export default LecturesListItem;
+export default SubjectsListItem;

@@ -28,15 +28,16 @@ const setUnverifiedUserDetails = (userDetails) => {
     userDetails,
   };
 };
-
 const login = (userDetails, history) => {
   return async (dispatch) => {
     const response = await api.login(userDetails);
+    console.log(response);
     if (response.error) {
       dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
       const { userDetails } = response?.data;
       localStorage.setItem("user", JSON.stringify(userDetails));
+
       dispatch(setUserDetails(userDetails));
       history.push("/dashboard");
     }
@@ -46,6 +47,7 @@ const login = (userDetails, history) => {
 const register = (userDetails) => {
   return async (dispatch) => {
     const response = await api.register(userDetails);
+    console.log(response);
     if (response.error) {
       dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
@@ -60,11 +62,14 @@ const register = (userDetails) => {
 const verify = (userDetails, history) => {
   return async (dispatch) => {
     const response = await api.verify(userDetails);
+    console.log(response);
     if (response.error) {
       dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
       const { userDetails } = response?.data;
+
       localStorage.setItem("user", JSON.stringify(userDetails));
+      console.log("verified", userDetails);
       dispatch(setUserDetails(userDetails));
       history.push("/dashboard");
     }

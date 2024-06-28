@@ -1,11 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import Message from "./Message";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import "../../shared/UI/css/chat.css";
 
-const ChatContainer = () => {
-  const messages = useSelector((state) => state.chat.messages);
-
+const ChatContainer = ({ messages }) => {
   const userDetailsString = localStorage.getItem("user");
   const userDetails = JSON.parse(userDetailsString);
   const username = userDetails.username;
@@ -28,4 +26,8 @@ const ChatContainer = () => {
   );
 };
 
-export default ChatContainer;
+const mapStateToProps = (state) => ({
+  messages: state.chat.messages,
+});
+
+export default connect(mapStateToProps)(ChatContainer);
