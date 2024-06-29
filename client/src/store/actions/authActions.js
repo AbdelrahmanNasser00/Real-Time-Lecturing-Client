@@ -30,22 +30,50 @@ const setUnverifiedUserDetails = (userDetails) => {
 };
 const login = (userDetails, history) => {
   return async (dispatch) => {
+    const Swal = require("sweetalert2");
+    if (!navigator.onLine) {
+      Swal.fire({
+        icon: "error",
+        title: "No Internet Connection",
+        text: "Please check your internet connection and try again.",
+      });
+      return;
+    }
     const response = await api.login(userDetails);
-    console.log(response);
     if (response.error) {
-      dispatch(openAlertMessage(response?.exception?.response?.data));
+      Swal.fire({
+        icon: "error",
+        title: "Invalid email or password",
+      });
+      return;
     } else {
       const { userDetails } = response?.data;
       localStorage.setItem("user", JSON.stringify(userDetails));
-
       dispatch(setUserDetails(userDetails));
-      history.push("/dashboard");
+      Swal.fire({
+        title: `Welcome Back, ${userDetails.username}!`,
+        text: "You login successfully!",
+        icon: "success",
+      }).then(() => {
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 500);
+      });
     }
   };
 };
 
 const register = (userDetails) => {
   return async (dispatch) => {
+    const Swal = require("sweetalert2");
+    if (!navigator.onLine) {
+      Swal.fire({
+        icon: "error",
+        title: "No Internet Connection",
+        text: "Please check your internet connection and try again.",
+      });
+      return;
+    }
     const response = await api.register(userDetails);
     console.log(response);
     if (response.error) {
@@ -61,16 +89,38 @@ const register = (userDetails) => {
 
 const verify = (userDetails, history) => {
   return async (dispatch) => {
+    const Swal = require("sweetalert2");
+    if (!navigator.onLine) {
+      Swal.fire({
+        icon: "error",
+        title: "No Internet Connection",
+        text: "Please check your internet connection and try again.",
+      });
+      return;
+    }
     const response = await api.verify(userDetails);
     console.log(response);
     if (response.error) {
-      dispatch(openAlertMessage(response?.exception?.response?.data));
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${response?.exception?.response?.data}`,
+      });
+      return;
     } else {
       const { userDetails } = response?.data;
-
       localStorage.setItem("user", JSON.stringify(userDetails));
       console.log("verified", userDetails);
       dispatch(setUserDetails(userDetails));
+      Swal.fire({
+        title: `Success`,
+        text: `${userDetails.username}, You have successfully registred!`,
+        icon: "success",
+      }).then(() => {
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 500);
+      });
       history.push("/dashboard");
     }
   };

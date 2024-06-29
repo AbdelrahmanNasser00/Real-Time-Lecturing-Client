@@ -8,7 +8,7 @@ import { validateLoginForm } from "../../shared/utils/validators";
 import { connect } from "react-redux";
 import { getActions } from "../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
-import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
+import background2 from "../../shared/UI/imgs/login photo.svg";
 import "../../shared/UI/css/login.css";
 
 const LoginPage = ({ login }) => {
@@ -40,7 +40,7 @@ const LoginPage = ({ login }) => {
       <Header />
       <div className="container-login">
         <div className="login-image-container">
-          <img src={BackGroundImage} alt="login pic" />
+          <img src={background2} alt="login pic" />
         </div>
         <AuthBox>
           <LoginPageHeader />

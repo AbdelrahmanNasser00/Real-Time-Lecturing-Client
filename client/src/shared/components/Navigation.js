@@ -28,8 +28,13 @@ const Navigation = ({ isClicked, setIsClicked }) => {
           </Link>
         </li>
         <li>
-          <Link className="a" to="/register">
-            Sign-Up
+          <Link className="sign-up" to="/register">
+            Sign up
+          </Link>
+        </li>
+        <li>
+          <Link className="a" to="/about">
+            About
           </Link>
         </li>
       </ul>

@@ -9,14 +9,15 @@
 .container-login {
     width: 100%;
     flex-direction: row-reverse;
-    height: 89vh;
+    height: 84vh;
     position: relative;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-size: cover;
     display: flex;
-
+    background: linear-gradient(to left, #e3f2fd, #ffffff);
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -46,6 +47,7 @@
     margin: auto;
     box-sizing: border-box;
     top: 20px;
+    max-width: 700px;
 }
 
 
@@ -58,9 +60,7 @@
 
 /* Media queries */
 @media screen and (max-width:1920px) {
-    .login-image-container {
-        margin: 0;
-    }
+    .login-image-container {}
 
 }
 
@@ -107,7 +107,4 @@
     .container-login {
         height: 80vh;
     }
-
-
-
 }

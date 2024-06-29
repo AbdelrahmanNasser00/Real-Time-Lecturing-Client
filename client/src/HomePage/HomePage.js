@@ -1,6 +1,8 @@
 import React from "react";
 import "../shared/UI/css/home.css";
-import BackGroundImage from "../shared/UI/imgs/student.png";
+import BackGroundImage from "../shared/UI/imgs/background3.svg";
+// import BackGroundImage from "../shared/UI/imgs/student.png";
+
 import Header from "../shared/components/Header";
 import { useHistory } from "react-router-dom";
 const HomePage = () => {

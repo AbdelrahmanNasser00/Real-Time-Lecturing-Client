@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
 import RedirectInfo from "../../shared/components/RedirectInfo";
 import { useHistory } from "react-router-dom";
@@ -18,6 +18,20 @@ const LoginPageFooter = ({ handleLogin, isFormValid }) => {
   const handlePushToRegisterPage = () => {
     history.push("/register");
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter" && isFormValid) {
+        handleLogin();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleLogin, isFormValid]);
 
   return (
     <>

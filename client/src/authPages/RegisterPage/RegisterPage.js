@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import VerificationPage from "./VerificationPage";
 import Header from "../../shared/components/Header";
 import RegisterPageHeader from "./RegisterPageHeader";
-import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
+import svg from "../../shared/UI/imgs/signup photo.svg";
 
 const RegisterPage = ({ register, verify }) => {
   const history = useHistory();
@@ -47,6 +47,7 @@ const RegisterPage = ({ register, verify }) => {
 
     verify(userDetails, history);
   };
+
   useEffect(() => {
     setIsFormValid(
       validateRegisterForm({
@@ -64,7 +65,7 @@ const RegisterPage = ({ register, verify }) => {
         {!showValidationCode && (
           <>
             <div className="login-image-container">
-              <img src={BackGroundImage} alt="register pic" />
+              <img src={svg} alt="register pic" />
             </div>
             <AuthBox>
               <RegisterPageHeader />

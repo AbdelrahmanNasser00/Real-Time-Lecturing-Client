@@ -1,7 +1,7 @@
 import React from "react";
 import OtpInput from "react-otp-input";
 import AuthBox from "../../shared/components/AuthBox";
-import BackGroundImage from "../../shared/UI/imgs/BACKGROUND.png";
+import BackGroundImage from "../../shared/UI/imgs/signup photo.svg";
 import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
 import "../../shared/UI/css/verification.css";
 
@@ -27,7 +27,7 @@ const VerificationPage = ({
 
   return (
     <>
-      <div className="svg-image-container">
+      <div className="verification-image-container">
         <img src={BackGroundImage} alt="verification pic" />
       </div>
       <AuthBox>
