@@ -1,10 +1,12 @@
 import React from "react";
 import * as roomHandler from "../../realtimeCommunication/roomHandler";
 import "../../shared/UI/css/RoomButtons.css";
+import store from "../../store/store";
 
 const CreateRoomButton = ({ isUserInRoom, subjectId }) => {
   const createNewRoomHandler = () => {
-    roomHandler.createNewRoom(subjectId);
+    const roomCreator = store.getState().auth.userDetails?.username;
+    roomHandler.createNewRoom({ subjectId, roomCreator });
   };
 
   return (

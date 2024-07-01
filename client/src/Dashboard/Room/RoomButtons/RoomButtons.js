@@ -6,28 +6,42 @@ import CloseRoomButton from "./CloseRoomButton";
 import ScreenShareButton from "./ScreenShareButton";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/roomActions";
+import ResizeRoomButton from "../ResizeRoomButton";
+import "../../../shared/UI/css/Room.css";
 
 const MainContainer = styled("div")({
-  height: "15%",
-  width: "100%",
-  backgroundColor: "#5865f2",
-  borderTopLeftRadius: "8px",
-  borderTopRightRadius: "8px",
+  height: "5rem",
+  width: "calc(99% + 10px)",
+  backgroundColor: "#333",
+  // borderTopLeftRadius: "15px",
+  // borderTopRightRadius: "15px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: "0px",
+  marginLeft: "5px",
+  marginRight: "5px",
+  marginBottom: "5px",
+  borderRadius: "15px",
 });
 
 const RoomButtons = (props) => {
-  const { localStream, isUserJoinedWithOnlyAudio } = props;
+  const {
+    localStream,
+    isUserJoinedWithOnlyAudio,
+    isRoomMinimized,
+    handleFullScreen,
+  } = props;
 
   return (
     <MainContainer>
-      {!isUserJoinedWithOnlyAudio && <ScreenShareButton {...props} />}
       <MicButton localStream={localStream} />
-      <CloseRoomButton />
       {!isUserJoinedWithOnlyAudio && <CameraButton localStream={localStream} />}
+      {!isUserJoinedWithOnlyAudio && <ScreenShareButton {...props} />}
+      <CloseRoomButton />
+      <ResizeRoomButton
+        isRoomMinimized={isRoomMinimized}
+        handleFullScreen={handleFullScreen}
+      />
     </MainContainer>
   );
 };

@@ -10,9 +10,7 @@ const ActiveRoomButton = ({
   isUserInRoom,
 }) => {
   const handleJoinActiveRoom = () => {
-    if (amountOfParticipants < 4) {
-      roomHandler.joinRoom(roomId);
-    }
+    roomHandler.joinRoom(roomId);
   };
 
   const activeRoomButtonDisabled = amountOfParticipants > 3;

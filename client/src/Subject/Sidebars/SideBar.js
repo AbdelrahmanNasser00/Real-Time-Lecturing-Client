@@ -33,17 +33,16 @@ const SideBar = ({ isUserInRoom, subject, handleFullScreen, isFullScreen }) => {
     setIsOpen(!isOpen);
   };
   const sidebarStyle = {
-    backgroundColor: "white",
-    marginTop: "1px",
+    // backgroundColor: "#333",
   };
 
   const iconStyle = {
-    color: "rgb(0, 152, 229)",
+    color: "#3d8bfd",
   };
 
   return (
     <Wrapper>
-      <Sidebar className="Sidebar" style={sidebarStyle} collapsed={!isOpen}>
+      <Sidebar className="Sidebar" collapsed={!isOpen}>
         <div className="sidebarMenu">
           <h4
             style={{ textAlign: "center", cursor: "pointer" }}

@@ -4,25 +4,64 @@
     font-weight: 400;
     display: flex;
     flex-direction: column;
-    color: #656565;
+    color: #eee;
 }
 
+/* .menu-item:hover {
+    background-color: blue;
+} */
+.ps-menu-button {
+    transition: all 0.5s ease 0s;
+    height: 43px !important;
+    display: inline;
+    /* background-color: #444444; */
+    border-radius: 30px;
+}
 
-.menu-item:active {}
+.ps-menu-button:hover {
+    background-color: #28292c !important;
+    transition: all 0.5s ease 0s;
+}
+
+.css-ewdv3l {
+    margin-left: 3px !important;
+}
+
+.css-wx7wi4 {
+    margin-left: 6px;
+    justify-content: left !important;
+}
+
+.css-12w9als {
+    font-weight: 600;
+}
+
+.ps-menu-button:active {
+    background-color: rgb(255, 255, 255, 0.3) !important;
+    transition: all 0.5s ease 0s;
+}
 
 .Sidebar {
-    background-color: white;
-    border-right: 1px solid gray;
+    /* background-color: white; */
+    /* border-right: 1px solid gray; */
+    background: linear-gradient(to left, #e3f2fd, #ffffff) !important;
+    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .css-dip3t8 {
-    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* background: linear-gradient(to left, #e3f2fd, #ffffff) !important; */
+    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #1e1f20 !important;
 }
 
 .Sidebar h4 {
     /* color: rgb(0, 152, 229); */
-    color: #5c27fe;
+    color: var(--main-color);
+}
+
+.css-1wvake5 {
+    border: none !important;
 }

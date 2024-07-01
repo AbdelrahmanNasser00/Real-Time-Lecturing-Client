@@ -34,7 +34,7 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("create-room", (data) => {
-    console.log("create-room event came");
+    console.log("create-room event came", data);
     roomHandler.newRoomCreated(data);
   });
 

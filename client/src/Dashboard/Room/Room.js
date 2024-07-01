@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/system";
-import ResizeRoomButton from "./ResizeRoomButton";
 import VideosContainer from "./VideosContainer";
 import RoomButtons from "./RoomButtons/RoomButtons";
+import "../../shared/UI/css/Room.css";
 const MainContainer = styled("div")({
   position: "relative",
   borderRadius: "0px",
@@ -20,7 +20,7 @@ const fullScreenRoomStyle = {
 
 const minimizedRoomStyle = {
   width: "100%",
-  height: "calc(100vh - 55px)",
+  height: "100vh",
 };
 
 const Room = ({ handleFullScreen, isFullScreen }) => {
@@ -35,8 +35,7 @@ const Room = ({ handleFullScreen, isFullScreen }) => {
       className="room-container"
       style={isRoomMinimized ? minimizedRoomStyle : fullScreenRoomStyle}>
       <VideosContainer />
-      <RoomButtons />
-      <ResizeRoomButton
+      <RoomButtons
         isRoomMinimized={isRoomMinimized}
         handleFullScreen={handleFullScreen}
       />

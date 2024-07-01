@@ -51,11 +51,11 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
     <>
       {!isFullScreen && (
         <>
-          <SubjectHeader
+          {/* <SubjectHeader
             isUserInRoom={isUserInRoom}
             subject={subject}
             setMobileSidebarWidth={setMobileSidebarWidth}
-          />
+          /> */}
           <div className="desktop-Sidebar">
             <SideBar
               isUserInRoom={isUserInRoom}

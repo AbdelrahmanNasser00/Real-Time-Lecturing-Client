@@ -8,6 +8,10 @@ import Subject from "./Subject/Subject";
 import HomePage from "./HomePage/HomePage";
 import Lecture from "./Subject/Lecture/Lecture";
 import "./App.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas);
 
 function App() {
   return (

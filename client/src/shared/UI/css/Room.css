@@ -1,0 +1,87 @@
+.videoWrapper-room-creator {
+    position: relative;
+    /* height: calc(100% - 5px); */
+    width: 80%;
+    overflow: hidden;
+    margin: 5px;
+}
+
+.videoWrapper-room-creator video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.videoWrapper-remote-streams {
+    flex: 1 1 200px;
+    max-width: 100%;
+}
+
+.remote-streams-container {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    width: 20%;
+    background: #333; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    width: 20%;
+    background: #333;
+    border-radius: 15px;
+    margin: 5px 5px 5px 0px;
+}
+
+.room-container {
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+.room-fullscreen {
+    width: 100% !important;
+    height: 100vh !important;
+}
+
+.css-1nyaam7 {
+    position: static !important;
+}
+
+.endCall-btn {
+    background-color: #dc362e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    height: 42px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.endCall-btn:hover {
+    background-color: rgba(220, 54, 46, 0.9);
+}
+
+.Mic-btn {
+    background-color: rgb(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root {}

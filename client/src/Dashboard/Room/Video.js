@@ -2,11 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { styled } from "@mui/system";
 
 const MainContainer = styled("div")({
-  height: "50%",
-  width: "50%",
-  backgroundColor: "black",
+  height: "100%",
+  width: "100%",
   borderRadius: "15px",
-  margin: "10px",
 });
 
 const VideoEl = styled("video")({

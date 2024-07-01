@@ -15,8 +15,20 @@ const ResizeRoomButton = ({ isRoomMinimized, handleFullScreen }) => {
     handleFullScreen();
   };
   return (
-    <MainContainer>
-      <IconButton style={{ color: "white" }} onClick={handleClick}>
+    <MainContainer
+      sx={{
+        bottom: "17px",
+        right: "18px",
+      }}>
+      <IconButton
+        sx={{
+          color: "white",
+          width: "48px",
+          height: "48px",
+          backgroundColor: "rgb(255, 255, 255, 0.1)",
+          borderRadius: "50%",
+        }}
+        onClick={handleClick}>
         {isRoomMinimized ? <OpenInFullIcon /> : <CloseFullscreenIcon />}
       </IconButton>
     </MainContainer>
