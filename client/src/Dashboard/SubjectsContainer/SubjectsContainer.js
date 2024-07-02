@@ -4,8 +4,10 @@ import "../../shared/UI/css/SubjectsContainer.css";
 
 const SubjectsContainer = () => {
   return (
-    <div className="SubjectsSideBar-container">
-      <h1 className="subject-h1">Your Subjects</h1>
+    <div className="Subjects-container">
+      <div className="subject-h2">
+        <h2>Your Subjects</h2>
+      </div>
       <SubjectsList />
     </div>
   );

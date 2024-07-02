@@ -4,7 +4,7 @@
     font-weight: 400;
     display: flex;
     flex-direction: column;
-    color: #eee;
+    color: #3c4043;
 }
 
 /* .menu-item:hover {
@@ -19,7 +19,14 @@
 }
 
 .ps-menu-button:hover {
-    background-color: #28292c !important;
+    /* background-color: #c4c7c5 !important; */
+    background-color: rgb(60, 64, 67, 0.1) !important;
+    transition: all 0.5s ease 0s;
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.ps-menu-button:active {
+    background-color: rgb(60, 64, 67, 0.4) !important;
     transition: all 0.5s ease 0s;
 }
 
@@ -36,30 +43,23 @@
     font-weight: 600;
 }
 
-.ps-menu-button:active {
-    background-color: rgb(255, 255, 255, 0.3) !important;
-    transition: all 0.5s ease 0s;
-}
+
 
 .Sidebar {
-    /* background-color: white; */
-    /* border-right: 1px solid gray; */
     background: linear-gradient(to left, #e3f2fd, #ffffff) !important;
-    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .css-dip3t8 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* background: linear-gradient(to left, #e3f2fd, #ffffff) !important; */
-    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.1);
-    background-color: #1e1f20 !important;
+    /* background-color: #1e1f20 !important; */
+    background-color: #f0f4f9 !important;
 }
 
 .Sidebar h4 {
-    /* color: rgb(0, 152, 229); */
-    color: var(--main-color);
+    color: #2E86C1;
 }
 
 .css-1wvake5 {

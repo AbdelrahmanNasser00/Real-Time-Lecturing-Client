@@ -1,7 +1,7 @@
 import React from "react";
 import SubjectsListItem from "./SubjectsListItem";
 import { connect } from "react-redux";
-import "../../../shared/UI/css/subject.css";
+import "../../../shared/UI/css/SubjectsContainer.css";
 
 const SubjectsList = ({ subjects }) => {
   return (
@@ -9,6 +9,7 @@ const SubjectsList = ({ subjects }) => {
       {subjects.map((subject) => (
         <SubjectsListItem
           key={subject.id}
+          id={subject.id}
           name={subject.name}
           code={subject.code}
         />

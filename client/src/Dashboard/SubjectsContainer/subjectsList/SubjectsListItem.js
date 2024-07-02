@@ -1,12 +1,20 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "../../../shared/UI/css/subjectListItem.css";
-import BackGroundImage from "../../../shared/UI/imgs/student.png";
+import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
+import {
+  setMessagesLoaded,
+  setSubjectId,
+} from "../../../store/actions/chatActions";
+import store from "../../../store/store";
 
-const SubjectsListItem = ({ name, code }) => {
+const SubjectsListItem = ({ id, name, code }) => {
   const history = useHistory();
 
   const handleSubjectClick = () => {
+    console.log(id);
+    store.dispatch(setSubjectId(id));
+    store.dispatch(setMessagesLoaded(false));
     history.push(`/subject/${code}`);
   };
 
@@ -47,16 +55,21 @@ const SubjectsListItem = ({ name, code }) => {
     <div
       className={`subject-container ${getSubjectColorClass()}`}
       onClick={handleSubjectClick}>
-      <div className="subject-img-container">
-        <img src={BackGroundImage} alt="subject pic" />
-      </div>
-      <div className="subject-left-half">
-        <h4>
+      <div className="content">
+        <h3>
           {name} ({code})
-        </h4>
-
+        </h3>
         {renderSubjectContent()}
       </div>
+      <KeyboardArrowRightRoundedIcon
+        sx={{
+          color: "#f27f0c",
+          display: "flex",
+          alignItems: "center",
+          width: "30px",
+          height: "30px",
+        }}
+      />
     </div>
   );
 };

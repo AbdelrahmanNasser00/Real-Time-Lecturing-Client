@@ -6,12 +6,11 @@ import { useParams } from "react-router-dom";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import { logout } from "../shared/utils/auth";
 import "../shared/UI/css/SubjectPage.css";
-import SubjectHeader from "../shared/components/SubjectHeader";
 import MobileSidebar from "./Sidebars/MobileSidebar";
 import SideBar from "./Sidebars/SideBar";
 import Room from "../Dashboard/Room/Room";
 
-const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
+const Subject = ({ subjects, setUserDetails, room, socketOpen, chat }) => {
   const [isLoading, setIsLoading] = useState(false);
   const isUserInRoom = room.isUserInRoom;
   const [mobileSidebarWidth, setMobileSidebarWidth] = useState(0);
@@ -33,7 +32,6 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   }, [setUserDetails, socketOpen, subjects.subjects.length]);
 
   const { id } = useParams();
-
   const subject = subjects.subjects.find((subject) => subject.code === id);
 
   const handleFullScreen = () => {
@@ -81,11 +79,12 @@ const Subject = ({ subjects, setUserDetails, room, socketOpen }) => {
   );
 };
 
-const mapStoreStateToProps = ({ room, subjects, socket }) => {
+const mapStoreStateToProps = ({ room, subjects, socket, chat }) => {
   return {
     subjects,
     room,
     socketOpen: socket.socketOpen,
+    chat,
   };
 };
 

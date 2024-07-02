@@ -4,7 +4,7 @@ import store from "../store/store";
 import * as roomHandler from "./roomHandler";
 import * as webRTCHandler from "./webRTCHandler";
 import { socketOpen, socketClose } from "../store/actions/socketActions";
-import { setMessages } from "../store/actions/chatActions";
+import { setMessages, setNewMessage } from "../store/actions/chatActions";
 let socket = null;
 
 export const connectWithSocketServer = (userDetails) => {
@@ -64,13 +64,12 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("receive-message", (data) => {
-    store.dispatch(setMessages(data));
+    console.log(data);
+    store.dispatch(setNewMessage(data));
   });
 
   socket.on("load-messages", (data) => {
-    data.forEach((message) => {
-      store.dispatch(setMessages(message));
-    });
+    store.dispatch(setMessages(data));
   });
 
   socket.on("disconnect", () => {
@@ -96,4 +95,9 @@ export const signalPeerData = (data) => {
 
 export const sendMessage = (data) => {
   socket.emit("send-message", data);
+};
+
+export const loadMessages = (data) => {
+  console.log(data);
+  socket.emit("load-messages", data);
 };

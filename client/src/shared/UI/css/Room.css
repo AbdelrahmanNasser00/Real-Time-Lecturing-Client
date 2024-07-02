@@ -45,6 +45,7 @@
 
 .room-container {
     transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+    background-color: #202225;
 }
 
 .room-fullscreen {

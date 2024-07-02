@@ -1,25 +1,38 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { useEffect, useState } from "react";
 import "../../shared/UI/css/chat.css";
 import * as socketConnection from "../../realtimeCommunication/socketConnection";
-import moment from "moment";
 
-const ChatFooter = () => {
+const ChatFooter = ({ subjectId }) => {
   const [message, setMessage] = useState("");
   const userDetailsString = localStorage.getItem("user");
   const userDetails = JSON.parse(userDetailsString);
   const username = userDetails.username;
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (message.trim() !== "" && e.key === "Enter") {
+        handleSendMessage();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [message]);
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
 
   const handleSendMessage = () => {
+    if (message.trim() === "") {
+      return;
+    }
     const fullMessage = {
-      id: uuidv4(),
       username: username,
       message: message,
-      timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+      subjectId: subjectId,
     };
     socketConnection.sendMessage(fullMessage);
     setMessage("");
